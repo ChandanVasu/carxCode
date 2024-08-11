@@ -2,6 +2,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Make from "@/components/block/make"
+import Listing from "@/components/block/listing"
+
 
 export default function App() {
 
@@ -28,6 +30,10 @@ export default function App() {
       </div>
       <div className="-mt-20">
         <Make />
+      </div>
+
+      <div className="lisitng-box mt-4 px-20">
+          <Listing></Listing>
       </div>
       
     </div>

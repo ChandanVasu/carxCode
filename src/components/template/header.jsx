@@ -2,12 +2,14 @@ import React from 'react';
 import { Input } from "@nextui-org/react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { HiMenuAlt3 } from "react-icons/hi";
+import Link from 'next/link';
 
 
 const Header = () => {
   return (
-    <div className='shadow-md flex justify-between items-center px-16 z-50 sticky top-0 bg-white'>
-      <img className='h-14 p-2' src="/logo.png" alt="Logo" />
+    <div className='shadow-1 flex justify-between items-center px-16 z-50 sticky top-0 bg-white'>
+      <Link href="/"><img className='h-14 p-2' src="/logo.png" alt="Logo" /></Link>
+      
       <div>
         <ul className='flex gap-6'>
           <li>Home</li>

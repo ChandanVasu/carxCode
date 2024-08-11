@@ -67,7 +67,7 @@ export default function App() {
 
       <div
         ref={scrollRef}
-        className="h-48 bg-white rounded-md shadow-lg overflow-x-auto no-scrollbar relative z-20 cursor-grab"
+        className="h-48 bg-white rounded-md shadow-1 overflow-x-auto no-scrollbar relative z-20 cursor-grab"
       >
         <div className="flex justify-start gap-16 items-center w-max h-full px-10">
           {makes.map((make, index) => (

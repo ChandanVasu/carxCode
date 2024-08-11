@@ -24,3 +24,34 @@
     scrollbar-width: none; /* Firefox */
   }
   
+  .shadow-1{
+    box-shadow: rgba(255, 210, 176, 0.3) 0px 1px 2px 0px, rgba(111, 227, 140, 0.15) 0px 1px 3px 1px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+  
+  h2 {
+    font-size: 26px;
+  }
+  
+  h3 {
+    font-size: 22px;
+  }
+  
+  h4 {
+    font-size: 18px;
+  }
+  
+  h5 {
+    font-size: 16px;
+  }
+  
+  h6 {
+    font-size: 14px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
