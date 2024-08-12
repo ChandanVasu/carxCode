@@ -77,7 +77,7 @@ export default function App() {
                 alt={make.make}
                 className="h-24 w-24 object-fill rounded-full p-3 bg-white shadow-md"
               />
-              <span className="text-xl font-semibold text-center">{make.make}</span>
+              <span className="text-base text-center">{make.make}</span>
             </div>
           ))}
         </div>

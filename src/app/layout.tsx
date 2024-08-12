@@ -5,7 +5,7 @@ import { Providers } from "./providers";
 import Header from "@/components/template/header"
 
 
-const inter = Poppins({ subsets: ["latin"], weight: ['100', '300', '700', "200", "400", "500", "600", "800", "900"], variable: '--poppins-font' });
+const inter = Poppins({ subsets: ["latin"], weight: ['100', '300', '700'], variable: '--poppins-font' });
 
  const metadata: Metadata = {
   title: "Create Next App",

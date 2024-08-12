@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <div className='shadow-1 flex justify-between items-center px-16 z-50 sticky top-0 bg-white'>
+    <div className='shadow-1 flex justify-between items-center px-16 z-50 sticky top-0 bg-white '>
       <Link href="/"><img className='h-14 p-2' src="/logo.png" alt="Logo" /></Link>
       
       <div>
