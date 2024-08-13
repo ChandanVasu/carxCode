@@ -34,6 +34,7 @@ export default function App() {
       </div>
 
       <div className="lisitng-box mt-4 px-20">
+          <h1 className="ml-5 font-semibold text-2xl mt-10">Newly Launched</h1>
           <Listing></Listing>
       </div>
       

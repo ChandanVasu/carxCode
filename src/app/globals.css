@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body{
+  
+}
 
 .poppins {
   font-family: var(--poppins-font);
@@ -32,22 +34,6 @@
 }
 
 
-
-/* .ckeditorrender img.image_resized {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-}
-
-.ckeditorrender .image-style-align-left {
-  float: left;
-  margin-right: 10px;
-}
-
-.ckeditorrender .image-style-align-right {
-  float: right;
-  margin-left: 10px;
-} */
 
 
 
@@ -79,6 +65,32 @@ h6 {
 p {
   font-size: 16px;
 }
+
+.bg-texcher {
+  position: relative;
+}
+
+
+
+.bg-texcher::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  opacity: 0.8;
+  background-image:  linear-gradient(#f6f6f6 1px, transparent 1px), linear-gradient(to right, #f6f6f6 1px, #ffffff 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+}
+
+.relative>.p-4 {
+  position: relative;
+  z-index: 10;
+}
+
 
 
 /**
