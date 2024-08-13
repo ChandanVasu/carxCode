@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Make from "@/components/block/make"
 import Listing from "@/components/block/listing"
+import FiltterList from "@/components/block/filtterList"
+
 
 
 
@@ -34,10 +36,16 @@ export default function App() {
       </div>
 
       <div className="lisitng-box mt-4 px-20">
-          <h1 className="ml-5 font-semibold text-2xl mt-10">Newly Launched</h1>
-          <Listing></Listing>
+        <FiltterList></FiltterList>
       </div>
-      
+{/* 
+      <div className="lisitng-box mt-4 px-20">
+        <h1 className="ml-5 font-semibold text-2xl mt-10">Newly Launched</h1>
+        <Listing></Listing>
+      </div> */}
+
+
+
     </div>
   );
 }
