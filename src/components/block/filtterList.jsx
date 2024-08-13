@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
+import { Select, SelectItem } from "@nextui-org/react";
 
 function Listing() {
     const [listing, setListing] = useState([]);
-    const [fetchMake, setMake] = useState("");
+    const [selectedMake, setSelectedMake] = useState("");
     const [makes, setMakes] = useState([]);
 
+    // Fetch car makes for the select dropdown
     useEffect(() => {
-        // Fetch car makes for the select dropdown
         const fetchMakes = async () => {
             try {
                 const response = await fetch("https://caradmin.vercel.app/api/listing/make");
@@ -23,54 +24,54 @@ function Listing() {
         fetchMakes();
     }, []);
 
+    // Fetch listings based on selected make
     useEffect(() => {
-        const fetchListing = async () => {
+        const fetchListings = async () => {
             try {
                 const response = await fetch("https://caradmin.vercel.app/api/listing");
                 let data = await response.json();
 
-                if (fetchMake) {
-                    data = data.filter(listing => listing.make === fetchMake);
+                if (selectedMake) {
+                    data = data.filter(listing => listing.make === selectedMake);
                 }
 
                 data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
                 setListing(data);
             } catch (error) {
-                console.error("Error fetching listing:", error);
+                console.error("Error fetching listings:", error);
             }
         };
 
-        fetchListing();
-    }, [fetchMake]);
+        fetchListings();
+    }, [selectedMake]);
 
     return (
         <div className="p-4">
             <div className="mb-4">
-                <label htmlFor="make-select" className="block text-lg font-medium text-gray-700">Filter by Make</label>
-                <select
-                    id="make-select"
-                    value={fetchMake}
-                    onChange={(e) => setMake(e.target.value)}
-                    className=""
+                <Select
+                    label="Select Make"
+                    placeholder="Select a make"
+                    value={selectedMake}
+                    onChange={(e) => setSelectedMake(e.target.value)}
+                    className="max-w-xs"
                 >
-                    {makes.map((make) => (
-                        <option key={make._id} value={make.make}>
+                    {makes.map(make => (
+                        <SelectItem key={make.make} value={make.make}>
                             {make.make}
-                        </option>
+                        </SelectItem>
                     ))}
-                </select>
+                </Select>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {listing.map((item) => (
+                {listing.map(item => (
                     <div key={item.id} className="relative shadow-md rounded-lg overflow-hidden bg-texcher">
                         <div className="relative z-10 p-4">
-                            <div className="overflow-hidden rounded-md mb-2 relative">
+                            <div className="relative mb-2 overflow-hidden rounded-md">
                                 <img
                                     src={item.image}
                                     alt={item.title}
-                                    className="w-full h-48 object-fill transition-transform duration-300 ease-in-out transform hover:scale-110"
+                                    className="w-full h-48 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
                                 />
                                 {item.itemCondition === "Used" && (
                                     <p className='absolute top-2 left-3 bg-red-600 text-white px-2 rounded-md'>
@@ -83,14 +84,14 @@ function Listing() {
                                     {item.title.length > 13 ? `${item.title.substring(0, 13)}...` : item.title}
                                     <p className='text-2xl drop-shadow-xl'>${item.price}</p>
                                 </h1>
-                                <Divider className='my-1 px-3'></Divider>
+                                <Divider className='my-1 px-3' />
                                 <div className='flex justify-between items-center'>
                                     <p className="flex items-center"><FaGasPump className="mr-2 text-blue-950" />{item.fuelType}</p>
-                                    <p className="flex items-center"><FaCar className="mr-2 text-blue-950" /> {item.bodyType} </p>
+                                    <p className="flex items-center"><FaCar className="mr-2 text-blue-950" /> {item.bodyType}</p>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <p className="flex items-center"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit} </p>
-                                    <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" /> {item.vehicleTransmission} </p>
+                                    <p className="flex items-center"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit}</p>
+                                    <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" /> {item.vehicleTransmission}</p>
                                 </div>
                             </div>
                         </div>
