@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  
-}
+body {}
 
 .poppins {
   font-family: var(--poppins-font);
@@ -66,6 +64,22 @@ p {
   font-size: 16px;
 }
 
+.bg-texcher1 {
+  background:
+  repeating-linear-gradient( 45deg,#0000 calc(-650%/13) calc(50%/13),#f6f6f6 0 calc(100%/13),
+  #0000 0 calc(150%/13),#f6f6f6 0 calc(200%/13),
+  #0000 0 calc(250%/13),#f6f6f6 0 calc(300%/13)),repeating-linear-gradient( 45deg,#0000 calc(-650%/13) calc(50%/13),#f6f6f6 0 calc(100%/13),
+  #0000 0 calc(150%/13),#f6f6f6 0 calc(200%/13),
+  #0000 0 calc(250%/13),#f6f6f6 0 calc(300%/13)) 32px 32px,
+  repeating-linear-gradient(-45deg,#0000 calc(-650%/13) calc(50%/13),#f6f6f6 0 calc(100%/13),
+  #0000 0 calc(150%/13),#f6f6f6 0 calc(200%/13),
+  #0000 0 calc(250%/13),#f6f6f6 0 calc(300%/13)),repeating-linear-gradient(-45deg,#0000 calc(-650%/13) calc(50%/13),#f6f6f6 0 calc(100%/13),
+  #0000 0 calc(150%/13),#f6f6f6 0 calc(200%/13),
+  #0000 0 calc(250%/13),#f6f6f6 0 calc(300%/13)) 32px 32px #ffffff;
+background-size: 64px 64px;
+
+}
+
 .bg-texcher {
   position: relative;
 }
@@ -81,7 +95,7 @@ p {
   bottom: 0;
   background-color: #ffffff;
   opacity: 0.8;
-  background-image:  linear-gradient(#f6f6f6 1px, transparent 1px), linear-gradient(to right, #f6f6f6 1px, #ffffff 1px);
+  background-image: linear-gradient(#f6f6f6 1px, transparent 1px), linear-gradient(to right, #f6f6f6 1px, #ffffff 1px);
   background-size: 20px 20px;
   z-index: 1;
 }
