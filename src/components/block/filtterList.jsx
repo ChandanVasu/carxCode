@@ -4,6 +4,7 @@ import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
 import { Select, SelectItem } from "@nextui-org/react";
 import { Image, Skeleton } from "@nextui-org/react";
+import Link from 'next/link';
 import { Slider } from "@nextui-org/react";
 
 function Listing() {
@@ -176,11 +177,13 @@ function Listing() {
                         <div key={item.id} className="relative shadow-md rounded-lg overflow-hidden bg-texcher">
                             <div className="relative z-10 p-4">
                                 <div className="relative mb-2 overflow-hidden rounded-md">
-                                    <img
+                                    <Link href={`/cars/${item._id}`}>
+                                        <img
                                         src={item.image}
                                         alt={item.title}
                                         className="w-full h-48 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
                                     />
+                                    </Link>
                                     {item.itemCondition === "Used" && (
                                         <p className='absolute top-2 left-3 bg-red-600 text-white px-2 rounded-md'>
                                             {item.itemCondition}
@@ -189,7 +192,7 @@ function Listing() {
                                 </div>
                                 <div>
                                     <h1 className="text-blue-950 text-lg font-semibold flex justify-between items-center">
-                                        {item.title.length > 13 ? `${item.title.substring(0, 13)}...` : item.title}
+                                        <Link href={`/cars/${item._id}`}>{item.title.length > 13 ? `${item.title.substring(0, 13)}...` : item.title}</Link>
                                         <p className='text-2xl drop-shadow-xl'>${item.price}</p>
                                     </h1>
                                     <Divider className='my-1 px-3' />

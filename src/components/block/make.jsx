@@ -47,14 +47,19 @@ export default function App() {
     const intervalId = setInterval(() => {
       scroll("right");
     }, 3000);
-
-    scrollRef.current.addEventListener("scroll", handleInfiniteScroll);
-
+  
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener("scroll", handleInfiniteScroll);
+    }
+  
     return () => {
       clearInterval(intervalId);
-      scrollRef.current.removeEventListener("scroll", handleInfiniteScroll);
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener("scroll", handleInfiniteScroll);
+      }
     };
   }, []);
+  
 
   return (
     <div className="relative w-9/12 m-auto group">

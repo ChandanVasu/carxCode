@@ -147,7 +147,7 @@ function Listing() {
                     <div className="flex flex-col gap-0 w-full h-full max-w-md items-start justify-center mb-4">
                         <Slider
                             formatOptions={{ style: "currency", currency: "USD" }}
-                            step={100}
+                            step={1000}
                             maxValue={1000000}
                             minValue={0}
                             value={priceValue}
