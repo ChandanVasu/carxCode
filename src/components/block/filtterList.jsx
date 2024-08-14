@@ -3,13 +3,17 @@ import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
 import { Select, SelectItem } from "@nextui-org/react";
+import { Image, Skeleton } from "@nextui-org/react";
+import { Slider } from "@nextui-org/react";
 
 function Listing() {
     const [listing, setListing] = useState([]);
     const [selectedMake, setSelectedMake] = useState("");
-    const [selectedModel, setSelectedModel] = useState(""); // State for selected model
+    const [selectedModel, setSelectedModel] = useState(""); 
     const [makes, setMakes] = useState([]);
-    const [models, setModels] = useState([]); // State for models
+    const [models, setModels] = useState([]); 
+    const [loading, setLoading] = useState(true); 
+    const [priceValue, setPrice] = useState([0]); // Initialize price value as [0]
 
     // Fetch car makes for the select dropdown
     useEffect(() => {
@@ -44,9 +48,10 @@ function Listing() {
         fetchModels();
     }, [selectedMake]);
 
-    // Fetch listings based on selected make and model
+    // Fetch listings based on selected make, model, and price
     useEffect(() => {
         const fetchListings = async () => {
+            setLoading(true); // Start loading
             try {
                 const response = await fetch("https://caradmin.vercel.app/api/listing");
                 let data = await response.json();
@@ -59,19 +64,34 @@ function Listing() {
                     data = data.filter(listing => listing.model === selectedModel);
                 }
 
+                if (priceValue[0] > 0) {
+                    const plainPriceValue = parseInt(priceValue[0].toString().replace(/,/g, ''), 10);
+                    data = data.filter(listing => parseInt(listing.price.replace(/,/g, ''), 10) <= plainPriceValue);
+                }
+
                 data.sort((a, b) => new Date(b.date) - new Date(a.date));
                 setListing(data);
             } catch (error) {
                 console.error("Error fetching listings:", error);
+            } finally {
+                setLoading(false); // End loading
             }
         };
 
         fetchListings();
-    }, [selectedMake, selectedModel]);
+    }, [selectedMake, selectedModel, priceValue]);
+
+    const renderSkeleton = () => (
+        <div className="listingCard p-4 mb-4 rounded-lg flex flex-col gap-1 listing-card shadow-md bg-white ">
+            <Skeleton className="h-[180px] w-[100%] rounded-xl mb-2" />
+            <Skeleton className="h-5 w-[100%] mb-1" />
+            <Skeleton className="h-5 w-[60%] mb-1" />
+        </div>
+    );
 
     return (
         <div className="p-4">
-            <div className='flex justify-center gap-10 '>
+            <div className='flex justify-center gap-10 items-center'>
                 <div className="mb-4">
                     <Select
                         placeholder="Select a make"
@@ -108,13 +128,51 @@ function Listing() {
                         ))}
                     </Select>
                 </div>
+
+                <div className="flex flex-col gap-0 w-full h-full max-w-md items-start justify-between mb-4">
+                    <Slider
+                        formatOptions={{ style: "currency", currency: "USD" }}
+                        step={100}
+                        maxValue={1000000}
+                        minValue={0}
+                        value={priceValue}
+                        onChange={setPrice}
+                        classNames={{
+                            base: "max-w-md gap-3",
+                            track: "border-s-secondary-100",
+                            filler: "bg-gradient-to-r from-secondary-100 to-secondary-500"
+                        }} 
+                        renderThumb={(props) => (
+                            <div
+                                {...props}
+                                className="group p-1 top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
+                            >
+                                <span className="transition-transform bg-gradient-to-br shadow-small from-secondary-100 to-secondary-500 rounded-full w-5 h-5 block group-data-[dragging=true]:scale-80" />
+                            </div>
+                        )}
+                    />
+                    <p className="text-default-500 font-medium text-small">
+                        Selected budget: {Array.isArray(priceValue) && priceValue.map((b) => `$${b}`).join(" – ")}
+                    </p>
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {listing.length === 0 ? (
-                    <p>No cars available for the selected make and model.</p>
-                ) : (
-                    listing.map(item => (
+            {loading ? (
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 px-4">
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                    {renderSkeleton()}
+                </div>
+            ) : listing.length === 0 ? (
+                <p>No cars available for the selected make and model.</p>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {listing.map(item => (
                         <div key={item.id} className="relative shadow-md rounded-lg overflow-hidden bg-texcher">
                             <div className="relative z-10 p-4">
                                 <div className="relative mb-2 overflow-hidden rounded-md">
@@ -141,14 +199,14 @@ function Listing() {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <p className="flex items-center"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit}</p>
-                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" /> {item.vehicleTransmission}</p>
+                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.transmission}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    ))
-                )}
-            </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
