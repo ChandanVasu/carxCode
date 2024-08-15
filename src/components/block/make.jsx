@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 

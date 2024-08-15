@@ -1,82 +1,41 @@
-// app/payment/page.js
+"use client"
+import React from 'react';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Make from "@/components/block/make";
+import Listing from "@/components/block/listing";
+import FiltterList from "@/components/block/filtterList";
+import EmiCalculator from "@/components/block/emi";  
 
-'use client';
-
-import React, { useState } from 'react';
-import Script from 'next/script';
-import { image } from '@nextui-org/theme';
-
-export default function PaymentPage() {
-  const [amount, setAmount] = useState('1');
-  const [currency, setCurrency] = useState('INR');
-  const [name, setName] = useState('chandan');
-  const [email, setEmail] = useState('vasux.com@gmail.com');
-
-  const handlePayment = async () => {
-    try {
-      const response = await fetch('/api/order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount, currency }),
-      });
-
-      const data = await response.json();
-
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Add your Razorpay Key ID here
-        amount: amount * 100,
-        currency: currency,
-        name: 'Rich Indai',
-        description: 'Test Transaction',
-        image:"/logo.png",
-        order_id: data.orderId,
-        handler: function (response) {
-          alert('Payment Successful!');
-          console.log(response);
-        },
-        prefill: {
-          name: name,
-          email: email,
-        },
-        theme: {
-          color: 'blue',
-        },
-      };
-
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+export default function App() {
   return (
-    <>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-      <div className="payment-container">
-        <h1>Make a Payment</h1>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <button onClick={handlePayment}>Pay Now</button>
+    <div>
+      <div className="top-main relative">
+        <img
+          className="w-full h-500 object-fill object-top relative"
+          src="/duplo24.jpg"
+          alt="Showroom" />
+        <div className="h-full w-full absolute top-0 left-0 flex justify-between items-center px-20">
+          <div className="mw-1/2 pr-10">
+            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-900 via-blue-800 to-black bg-clip-text text-transparent leading-tight">
+              Experience Excellence with CarsX
+            </h1>
+            <p className="text-xl mb-8 bg-gradient-to-r from-purple-900 via-blue-800 to-black bg-clip-text text-transparent leading-relaxed">
+              Unlock unbeatable offers on the newest models and take the wheel of your dream car today.
+            </p>
+          </div>
+
+          <img className="h-72 w-1/2 object-contain drop-shadow-lg" src="/cars.png" alt="Cars" />
+        </div>
       </div>
-    </>
+      <div className="-mt-20">
+        <Make />
+      </div>
+
+      <div className="lisitng-box mt-4 px-20">
+        <FiltterList />
+      </div>
+
+      <EmiCalculator /> 
+    </div>
   );
 }

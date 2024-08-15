@@ -8,19 +8,20 @@ import Link from 'next/link';
 import { Slider } from "@nextui-org/react";
 
 function Listing() {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     const [listing, setListing] = useState([]);
     const [selectedMake, setSelectedMake] = useState("");
     const [selectedModel, setSelectedModel] = useState(""); 
     const [makes, setMakes] = useState([]);
     const [models, setModels] = useState([]); 
     const [loading, setLoading] = useState(true); 
-    const [priceValue, setPrice] = useState([0]); // Initialize price value as [0]
+    const [priceValue, setPrice] = useState([1000000]); // Initialize price value as [0]
 
     // Fetch car makes for the select dropdown
     useEffect(() => {
         const fetchMakes = async () => {
             try {
-                const response = await fetch("https://caradmin.vercel.app/api/listing/make");
+                const response = await fetch(`${baseUrl}/api/listing/make`);
                 const data = await response.json();
                 setMakes(data);
             } catch (error) {
@@ -37,7 +38,7 @@ function Listing() {
             if (!selectedMake) return;
 
             try {
-                const response = await fetch(`https://caradmin.vercel.app/api/listing/model?make=${selectedMake}`);
+                const response = await fetch(`${baseUrl}/api/listing/model?make=${selectedMake}`);
                 const data = await response.json();
                 setModels(data);
                 setSelectedModel(""); // Reset selected model when make changes
@@ -54,7 +55,7 @@ function Listing() {
         const fetchListings = async () => {
             setLoading(true); // Start loading
             try {
-                const response = await fetch("https://caradmin.vercel.app/api/listing");
+                const response = await fetch(`${baseUrl}/api/listing`);
                 let data = await response.json();
 
                 if (selectedMake) {
@@ -92,7 +93,7 @@ function Listing() {
 
     return (
         <div className="p-4">
-            <div className='flex justify-center gap-10 items-center'>
+            <div className='flex justify-center gap-10 items-center my-10'>
                 <div className="mb-4">
                     <Select
                         placeholder="Select a make"
@@ -170,7 +171,9 @@ function Listing() {
                     {renderSkeleton()}
                 </div>
             ) : listing.length === 0 ? (
-                <p>No cars available for the selected make and model.</p>
+                <div className='mx-20 m-auto flex justify-center'>
+                    <img className='w-96 h-96' src="/nodata.jpg" alt="" />
+                </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {listing.map(item => (

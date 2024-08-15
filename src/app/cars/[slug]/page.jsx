@@ -1,4 +1,3 @@
-
 import ListingPage from "./carPost";
 
 export async function generateMetadata({ params }) {
@@ -9,9 +8,9 @@ export async function generateMetadata({ params }) {
 
   if (listing) {
     return {
-      title: listing.title,
+      title: `${listing.title} | ${listing.year} | ${listing.color} |  ${listing.fuelType} |  ${listing.bodyType}`,  // Combine title and price here
       openGraph: {
-        title: listing.title,
+        title: `${listing.title} | ${listing.year} | ${listing.color} |  ${listing.fuelType} |  ${listing.bodyType}`,  // Combine title and price here
       },
     };
   }
@@ -25,5 +24,5 @@ export async function generateMetadata({ params }) {
 }
 
 export default function Page({ params }) {
-  return <ListingPage slug={params.slug} />;
+  return <div className="mb-10"><ListingPage slug={params.slug} /></div>;
 }
