@@ -7,10 +7,10 @@ import Script from 'next/script';
 import { image } from '@nextui-org/theme';
 
 export default function PaymentPage() {
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState('1');
   const [currency, setCurrency] = useState('INR');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState('chandan');
+  const [email, setEmail] = useState('vasux.com@gmail.com');
 
   const handlePayment = async () => {
     try {
@@ -41,7 +41,7 @@ export default function PaymentPage() {
           email: email,
         },
         theme: {
-          color: 'red',
+          color: 'blue',
         },
       };
 
