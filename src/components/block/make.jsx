@@ -1,11 +1,22 @@
-// "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+const SkeletonLoader = () => (
+  <div className="flex gap-16 items-center w-full h-full px-10">
+    {[...Array(9)].map((_, index) => (
+      <div key={index} className="flex flex-col items-center justify-between gap-3 animate-pulse">
+        <div className="h-24 w-24 bg-gray-200 rounded-full"></div>
+        <div className="h-4 w-24 bg-gray-200 rounded"></div>
+      </div>
+    ))}
+  </div>
+);
 
 export default function App() {
   const [makes, setMakes] = useState([]);
   const scrollRef = useRef(null);
   const [isAppending, setIsAppending] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMakes = async () => {
@@ -13,8 +24,10 @@ export default function App() {
         const response = await fetch("https://caradmin.vercel.app/api/listing/make");
         const data = await response.json();
         setMakes(data);
+        setLoading(false); // Data has been loaded
       } catch (error) {
         console.error("Error fetching makes:", error);
+        setLoading(false); // Data loading failed
       }
     };
 
@@ -59,7 +72,6 @@ export default function App() {
       }
     };
   }, []);
-  
 
   return (
     <div className="relative w-9/12 m-auto group">
@@ -74,18 +86,22 @@ export default function App() {
         ref={scrollRef}
         className="h-48 bg-white rounded-md shadow-1 overflow-x-auto no-scrollbar relative z-20 cursor-grab"
       >
-        <div className="flex justify-start gap-16 items-center w-max h-full px-10">
-          {makes.map((make, index) => (
-            <div key={index} className="flex flex-col items-center justify-between gap-3">
-              <img
-                src={make.image}
-                alt={make.make}
-                className="h-24 w-24 object-fill rounded-full p-3 bg-white shadow-md"
-              />
-              <span className="text-base text-center">{make.make}</span>
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <SkeletonLoader />
+        ) : (
+          <div className="flex justify-start gap-16 items-center w-max h-full px-10">
+            {makes.map((make, index) => (
+              <div key={index} className="flex flex-col items-center justify-between gap-3">
+                <img
+                  src={make.image}
+                  alt={make.make}
+                  className="h-24 w-24 object-fill rounded-full p-3 bg-white shadow-md"
+                />
+                <span className="text-base text-center">{make.make}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <button
