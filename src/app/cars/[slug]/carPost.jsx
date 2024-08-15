@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa"; // Import the verify icon
 import RelatedCars from "./relatedCars";
-import EmiCalculator from "@/components/block/emi";  
+import EmiCalculator from "@/components/block/emi";
+import { Image } from "@nextui-org/react";
+
 
 
 export default function ListingPage({ slug }) {
@@ -32,13 +34,17 @@ export default function ListingPage({ slug }) {
         {listing.map((item) => (
           <div className="flex gap-10" key={item.id}>
             <div className="w-3/5 max-w-full">
-              <img className="rounded-md" src={item.image} alt={item.title} />
+              <Image
+                alt="NextUI hero Image"
+                src={item.image}
+                shadow="sm"
+              />
               <div>
-                <div className="flex justify-between items-center mt-2">
+                <div className="flex justify-between items-center mt-4 bg-texcher1 px-4 rounded-md">
                   <h1 className="font-semibold my-2 text-2xl">{item.title}</h1>
-                  <h1 className="font-semibold my-2 text-4xl drop-shadow-lg">${item.price}</h1>
+                  <h1 className="font-semibold my-2 text-4xl drop-shadow-lg text-blue-950">${item.price}</h1>
                 </div>
-                
+
                 {/* Car Details Section */}
                 <div className="bg-gray-100 p-4 rounded-md mt-4 grid grid-cols-2 gap-4 ">
                   <p><strong>Make:</strong> {item.make}</p>
@@ -50,7 +56,7 @@ export default function ListingPage({ slug }) {
                   <p><strong>VIN:</strong> {item.vin}</p>
                   <p><strong>Body Type:</strong> {item.bodyType}</p>
                   <p><strong>Color:</strong> {item.color}</p>
-                  <p><strong>Drive Wheel Configuration:</strong> {item.driveWheelConfiguration}</p>
+                  <p><strong>Drive Wheel:</strong> {item.driveWheelConfiguration}</p>
                   <p><strong>Number of Doors:</strong> {item.numberOfDoors}</p>
                   <p><strong>Fuel Type:</strong> {item.fuelType}</p>
                   <p><strong>Engine:</strong> {item.vehicleEngine}</p>
@@ -60,9 +66,9 @@ export default function ListingPage({ slug }) {
                 </div>
 
                 <div
-                className="ck-content mt-8"
-                dangerouslySetInnerHTML={{ __html: item.description }}
-              ></div>
+                  className="ck-content mt-8"
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                ></div>
 
                 {/* Car Features Section */}
                 <div className="bg-gray-100 p-4 rounded-md mt-4">
@@ -96,10 +102,10 @@ export default function ListingPage({ slug }) {
             <div className="w-2/5 max-w-full">
               <h4 className="mb-3 font-semibold">Related Cars</h4>
               <RelatedCars></RelatedCars>
-                    <div className="mt-5">
-                    <EmiCalculator /> 
+              <div className="mt-5">
+                <EmiCalculator />
 
-                    </div>
+              </div>
             </div>
           </div>
         ))}

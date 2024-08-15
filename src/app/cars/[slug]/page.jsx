@@ -8,9 +8,18 @@ export async function generateMetadata({ params }) {
 
   if (listing) {
     return {
-      title: `${listing.title} | ${listing.year} | ${listing.color} |  ${listing.fuelType} |  ${listing.bodyType}`,  // Combine title and price here
+      title: `${listing.title} | ${listing.year} | ${listing.color} | ${listing.fuelType} | ${listing.bodyType}`,  // Combine title and price here
       openGraph: {
-        title: `${listing.title} | ${listing.year} | ${listing.color} |  ${listing.fuelType} |  ${listing.bodyType}`,  // Combine title and price here
+        title: `${listing.title} | ${listing.year} | ${listing.color} | ${listing.fuelType} | ${listing.bodyType}`,  // Combine title and price here
+        description: `Check out this ${listing.year} ${listing.title} with ${listing.color} color, ${listing.fuelType} fuel type, and ${listing.bodyType} body type.`,
+        images: [
+          {
+            url: listing.image,
+            width: 1200,
+            height: 630,
+            alt: `${listing.title} Image`,
+          },
+        ],
       },
     };
   }
@@ -19,6 +28,7 @@ export async function generateMetadata({ params }) {
     title: "Listing Not Found",
     openGraph: {
       title: "Listing Not Found",
+      description: "The listing you are looking for was not found.",
     },
   };
 }

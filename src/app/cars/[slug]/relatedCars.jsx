@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
+import { Skeleton } from "@nextui-org/react"; // Assuming you are using NextUI's Skeleton component
 
 function Listing() {
     const [listing, setListing] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -18,6 +20,8 @@ function Listing() {
                 setListing(data);
             } catch (error) {
                 console.error("Error fetching listing:", error);
+            } finally {
+                setLoading(false); // Set loading to false after data is fetched
             }
         };
 
@@ -26,12 +30,46 @@ function Listing() {
 
     const limitedListing = listing.slice(0, 6);
 
+    const renderSkeleton = () => (
+        <div className="flex bg-white shadow-1 rounded-lg overflow-hidden bg-texcher1 relative">
+            <div className="w-2/4">
+                <Skeleton className="h-40 w-full object-fill" />
+            </div>
+            <div className="w-2/4 px-4">
+                <Skeleton className="h-6 w-3/4 mb-2" />
+                <Skeleton className="h-8 w-1/2 mb-2" />
+                <Divider className="my-2" />
+                <div className="mb-2 flex justify-between">
+                    <Skeleton className="h-5 w-1/3" />
+                    <Skeleton className="h-5 w-1/3" />
+                </div>
+                <div className="mb-2 flex justify-between">
+                    <Skeleton className="h-5 w-1/3" />
+                    <Skeleton className="h-5 w-1/3" />
+                </div>
+            </div>
+        </div>
+    );
+    
+
+    if (loading) {
+        return (
+            <div className="grid grid-cols-1 gap-4">
+                {Array.from({ length: 6 }).map((_, index) => (
+                    <React.Fragment key={index}>
+                        {renderSkeleton()}
+                    </React.Fragment>
+                ))}
+            </div>
+        );
+    }
+
     return (
         <div className="">
             <div className="grid grid-cols-1 gap-4">
                 {limitedListing.map((item) => (
                     <div key={item.id} className="flex bg-white shadow-1 rounded-lg overflow-hidden bg-texcher1 relative">
-                        <div className="w-2/4 ">
+                        <div className="w-2/4">
                             <img
                                 src={item.image}
                                 alt={item.title}

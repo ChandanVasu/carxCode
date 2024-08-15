@@ -12,8 +12,8 @@ const Header = () => {
       
       <div>
         <ul className='flex gap-6'>
-          <li>Home</li>
-          <li>Cars</li>
+        <Link href="/"><li>Home</li></Link>
+        <Link href="/cars"><li>Cars</li></Link>
           <li>Search</li>
           <li>Latest</li>
           <li>Popular</li>
