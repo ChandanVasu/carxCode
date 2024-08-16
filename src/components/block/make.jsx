@@ -38,7 +38,7 @@ export default function App() {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = window.innerWidth < 768 ? itemWidth + 16 : itemWidthMd + 60; // Adjust for mobile and desktop
+      const scrollAmount = window.innerWidth < 768 ? itemWidth + 18 : itemWidthMd + 60; // Adjust for mobile and desktop
       if (direction === "left") {
         scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
       } else {

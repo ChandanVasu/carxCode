@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
-import { Skeleton } from "@nextui-org/react"; // Assuming you are using NextUI's Skeleton component
+import { Skeleton } from "@nextui-org/react";
 
 function Listing() {
     const [listing, setListing] = useState([]);
@@ -21,7 +21,7 @@ function Listing() {
             } catch (error) {
                 console.error("Error fetching listing:", error);
             } finally {
-                setLoading(false); // Set loading to false after data is fetched
+                setLoading(false);
             }
         };
 
@@ -50,7 +50,6 @@ function Listing() {
             </div>
         </div>
     );
-    
 
     if (loading) {
         return (
@@ -81,12 +80,14 @@ function Listing() {
                                 {item.title.length > 20 ? `${item.title.substring(0, 20)}...` : item.title}
                             </h1>
                             <p className="text-2xl font-semibold text-blue-950 ">${item.price}</p>
-                            <Divider className='my-2 ' />
-                            <div className=' grid grid-cols-2'>
+                            
+                            {/* Hidden on mobile, visible on medium and larger screens */}
+                            <Divider className='my-2 hidden md:block' />
+                            <div className='hidden md:grid grid-cols-2'>
                                 <p className="flex items-center mb-1"><FaGasPump className="mr-2 text-blue-950" />{item.fuelType}</p>
                                 <p className="flex items-center mb-1"><FaCar className="mr-2 text-blue-950" /> {item.bodyType} </p>
                             </div>
-                            <div className=' grid grid-cols-2'>
+                            <div className='hidden md:grid grid-cols-2'>
                                 <p className="flex items-center mb-1"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit} </p>
                                 <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" /> {item.vehicleTransmission} </p>
                             </div>
