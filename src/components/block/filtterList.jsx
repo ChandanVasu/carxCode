@@ -93,8 +93,8 @@ function Listing() {
 
     return (
         <div className="p-4">
-            <div className='flex justify-center gap-10 items-center my-10'>
-                <div className="mb-4">
+            <div className='flex flex-col md:flex-row justify-center gap-5 items-center my-10 md:gap-10'>
+                <div className="flex flex-col items-center gap-0 w-full h-full max-w-md  justify-between mb-4">
                     <Select
                         placeholder="Select a make"
                         value={selectedMake}
@@ -104,7 +104,7 @@ function Listing() {
                             setSelectedMake(e.target.value);
                             setSelectedModel(""); // Reset selected model when make changes
                         }}
-                        className="max-w-xs w-80">
+                        className="max-w-md md:w-80 w-11/12">
                         {makes.map(make => (
                             <SelectItem key={make.make} value={make.make}>
                                 {make.make}
@@ -113,14 +113,14 @@ function Listing() {
                     </Select>
                 </div>
 
-                <div className="mb-4">
+                <div className="flex flex-col items-center gap-0 w-full h-full max-w-md  justify-between mb-4">
                     <Select
                         placeholder="Select a model"
                         value={selectedModel}
                         color='secondary'
                         labelPlacement="outside"
                         onChange={(e) => setSelectedModel(e.target.value)}
-                        className="max-w-xs w-80"
+                        className="max-w-md md:w-80 w-11/12	"
                         isDisabled={!selectedMake} // Disable if no make is selected
                     >
                         {models.map(model => (
@@ -131,7 +131,7 @@ function Listing() {
                     </Select>
                 </div>
 
-                <div className="flex flex-col gap-0 w-full h-full max-w-md items-start justify-between mb-4">
+                <div className="flex flex-col items-center gap-0 w-full h-full max-w-md  justify-between mb-4">
                     <Slider
                         formatOptions={{ style: "currency", currency: "USD" }}
                         step={100}
@@ -140,7 +140,7 @@ function Listing() {
                         value={priceValue}
                         onChange={setPrice}
                         classNames={{
-                            base: "max-w-md gap-3",
+                            base: "max-w-md gap-3 md:w-80 w-11/12",
                             track: "border-s-secondary-100",
                             filler: "bg-gradient-to-r from-secondary-100 to-secondary-500"
                         }}
@@ -158,6 +158,7 @@ function Listing() {
                     </p>
                 </div>
             </div>
+
 
             {loading ? (
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 px-4">
@@ -205,7 +206,7 @@ function Listing() {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <p className="flex items-center"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit}</p>
-                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.vehicleTransmission}</p>
+                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.transmission}</p>
                                     </div>
                                 </div>
                             </div>

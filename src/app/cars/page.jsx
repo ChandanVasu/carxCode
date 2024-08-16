@@ -217,7 +217,7 @@ function Listing() {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <p className="flex items-center"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit}</p>
-                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.vehicleTransmission}</p>
+                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.transmission}</p>
                                     </div>
                                 </div>
                             </div>

@@ -74,7 +74,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative w-9/12 m-auto group">
+    <div className="relative w-full m-auto group md:w-9/12 px-3 md:px-0">
       <button
         onClick={() => scroll("left")}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-30 bg-white p-2 rounded-full shadow-lg ml-1 opacity-0 group-hover:opacity-100 transition-opacity"

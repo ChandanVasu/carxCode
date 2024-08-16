@@ -14,8 +14,8 @@ export default function App() {
           className="w-full h-500 object-fill object-top relative"
           src="/duplo24.jpg"
           alt="Showroom" />
-        <div className="h-full w-full absolute top-0 left-0 flex justify-between items-center px-20">
-          <div className="mw-1/2 pr-10">
+        <div className="h-full w-full absolute top-0 left-0 flex justify-between items-center px-5 md:px-20 flex-col md:flex-row">
+          <div className="mw-1/2 pr-0 ms:pr-10 text-center md:text-center">
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-900 via-blue-800 to-black bg-clip-text text-transparent leading-tight">
               Experience Excellence with CarsX
             </h1>
@@ -31,11 +31,9 @@ export default function App() {
         <Make />
       </div>
 
-      <div className="lisitng-box mt-4 px-20">
+      <div className="lisitng-box mt-4 px-3 md:px-20">
         <FiltterList />
       </div>
-
-      <EmiCalculator /> 
     </div>
   );
 }
