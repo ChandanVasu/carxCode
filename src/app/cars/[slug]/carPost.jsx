@@ -128,7 +128,7 @@ export default function ListingPage({ slug }) {
                 </p>
                 <p className="grid grid-cols-2 gap-4  p-2 rounded-md shadow-1">
                   <span className='flex gap-2 items-center'>
-                    <FaUsers className="text-gray-700" /> Seating Capacity:
+                    <FaUsers className="text-gray-700" /> Seating:
                   </span>
                   <span>{item.vehicleSeatingCapacity}</span>
                 </p>

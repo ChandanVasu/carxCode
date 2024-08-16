@@ -11,10 +11,10 @@ function Listing() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     const [listing, setListing] = useState([]);
     const [selectedMake, setSelectedMake] = useState("");
-    const [selectedModel, setSelectedModel] = useState(""); 
+    const [selectedModel, setSelectedModel] = useState("");
     const [makes, setMakes] = useState([]);
-    const [models, setModels] = useState([]); 
-    const [loading, setLoading] = useState(true); 
+    const [models, setModels] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [priceValue, setPrice] = useState([1000000]); // Initialize price value as [0]
 
     // Fetch car makes for the select dropdown
@@ -143,7 +143,7 @@ function Listing() {
                             base: "max-w-md gap-3",
                             track: "border-s-secondary-100",
                             filler: "bg-gradient-to-r from-secondary-100 to-secondary-500"
-                        }} 
+                        }}
                         renderThumb={(props) => (
                             <div
                                 {...props}
@@ -182,10 +182,10 @@ function Listing() {
                                 <div className="relative mb-2 overflow-hidden rounded-md">
                                     <Link href={`/cars/${item._id}`}>
                                         <img
-                                        src={item.image}
-                                        alt={item.title}
-                                        className="w-full h-48 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
-                                    />
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full h-48 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
+                                        />
                                     </Link>
                                     {item.itemCondition === "Used" && (
                                         <p className='absolute top-2 left-3 bg-red-600 text-white px-2 rounded-md'>
@@ -205,7 +205,7 @@ function Listing() {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <p className="flex items-center"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit}</p>
-                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.transmission}</p>
+                                        <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" />{item.vehicleTransmission}</p>
                                     </div>
                                 </div>
                             </div>
