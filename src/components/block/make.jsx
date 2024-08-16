@@ -38,7 +38,7 @@ export default function App() {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = window.innerWidth < 768 ? itemWidth + 16 : itemWidthMd + 32; // Adjust for mobile and desktop
+      const scrollAmount = window.innerWidth < 768 ? itemWidth + 16 : itemWidthMd + 60; // Adjust for mobile and desktop
       if (direction === "left") {
         scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
       } else {
@@ -93,7 +93,7 @@ export default function App() {
         {loading ? (
           <SkeletonLoader />
         ) : (
-          <div className="flex justify-start gap-4 md:gap-8 items-center w-max h-full px-3 md:px-10">
+          <div className="flex justify-start gap-8 md:gap-16 items-center w-max h-full px-3 md:px-10">
             {makes.map((make, index) => (
               <div key={index} className="flex flex-col items-center justify-between gap-3">
                 <img
