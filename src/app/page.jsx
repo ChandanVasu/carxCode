@@ -15,7 +15,7 @@ export default function App() {
           src="/duplo24.jpg"
           alt="Showroom" />
         <div className="h-full w-full absolute top-0 left-0 flex justify-between items-center px-5 md:px-20 flex-col md:flex-row pt-4">
-          <div className="mw-1/2 pr-0 ms:pr-10 text-center md:text-start mt-0 md:mt-3">
+          <div className="mw-1/2 pr-0 md:pr-10 text-center md:text-start mt-0 md:mt-3">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-900 via-blue-800 to-black bg-clip-text text-transparent leading-tight">
               Experience Excellence with CarsX
             </h1>

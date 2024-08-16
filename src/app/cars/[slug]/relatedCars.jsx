@@ -69,24 +69,24 @@ function Listing() {
             <div className="grid grid-cols-1 gap-4">
                 {limitedListing.map((item) => (
                     <div key={item.id} className="flex bg-white shadow-1 rounded-lg overflow-hidden bg-texcher1 relative">
-                        <div className="w-2/4">
+                        <div className="w-2/6 md:w-2/4">
                             <img
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-40 object-fill"
+                                className="w-full h-full object-fill"
                             />
                         </div>
-                        <div className="w-2/4 px-4">
-                            <h1 className="text-blue-950 text-lg font-semibold mb-2">
+                        <div className="w-4/6 px-4 md:w-2/4 flex flex-col justify-start gap-1">
+                            <h1 className="text-blue-950 text-lg font-semibold ">
                                 {item.title.length > 20 ? `${item.title.substring(0, 20)}...` : item.title}
                             </h1>
-                            <p className="text-2xl font-semibold text-blue-950 mb-2">${item.price}</p>
+                            <p className="text-2xl font-semibold text-blue-950 ">${item.price}</p>
                             <Divider className='my-2 ' />
-                            <div className='mb-2 flex justify-between'>
+                            <div className=' grid grid-cols-2'>
                                 <p className="flex items-center mb-1"><FaGasPump className="mr-2 text-blue-950" />{item.fuelType}</p>
                                 <p className="flex items-center mb-1"><FaCar className="mr-2 text-blue-950" /> {item.bodyType} </p>
                             </div>
-                            <div className='mb-2 flex justify-between'>
+                            <div className=' grid grid-cols-2'>
                                 <p className="flex items-center mb-1"><FaTachometerAlt className="mr-2 text-blue-950" /> {item.mileage} {item.mileageUnit} </p>
                                 <p className="flex items-center"><TbSteeringWheel className="mr-2 text-blue-950" /> {item.vehicleTransmission} </p>
                             </div>

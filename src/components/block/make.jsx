@@ -89,13 +89,13 @@ export default function App() {
         {loading ? (
           <SkeletonLoader />
         ) : (
-          <div className="flex justify-start gap-16 items-center w-max h-full px-10">
+          <div className="flex justify-start gap-8 md:gap-16 items-center w-max h-full px-10">
             {makes.map((make, index) => (
               <div key={index} className="flex flex-col items-center justify-between gap-3">
                 <img
                   src={make.image}
                   alt={make.make}
-                  className="h-16 w-16 object-fill rounded-full p-3 bg-white shadow-md"
+                  className="h-16 w-16 md:h-24 md:w-24 object-fill rounded-full p-3 bg-white shadow-md"
                 />
                 <span className="text-base text-center">{make.make}</span>
               </div>

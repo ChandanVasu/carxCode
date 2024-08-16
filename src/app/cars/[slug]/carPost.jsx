@@ -43,126 +43,52 @@ export default function ListingPage({ slug }) {
   }, [slug]);
 
   return (
-    <div className="mx-20 mt-10">
+    <div className="px-4 sm:px-6 lg:px-20 mt-10">
       <div>
         {listing.map((item) => (
-          <div className="flex gap-10" key={item.id}>
-            <div className="w-3/5 max-w-full">
+          <div className="flex flex-col lg:flex-row gap-10" key={item.id}>
+            <div className="w-full lg:w-3/5">
               <Image
                 alt="NextUI hero Image"
                 src={item.image}
                 height={450}
                 width={1000}
                 shadow="sm"
+                className="w-full"
               />
               <div>
-                <div className="flex justify-between items-center mt-4 px-4 rounded-md">
-                  <h1 className="font-semibold my-2 text-2xl">{item.title}</h1>
-                  <h1 className="font-semibold my-2 text-4xl drop-shadow-lg">
-                    ${item.price}
-                  </h1>
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mt-4 px-4 rounded-md">
+                  <h1 className="font-semibold my-2 text-2xl lg:text-3xl">{item.title}</h1>
+                  <h1 className="font-semibold my-2 text-4xl drop-shadow-lg">${item.price}</h1>
                 </div>
 
                 <h2 className="text-xl font-semibold mt-4 pl-4">Car Overview</h2>
-                <div className="p-4 rounded-md grid grid-cols-2 gap-4">
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaCar className="text-gray-700" /> Make:
-                    </span>
-                    <span>{item.make}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaCarAlt className="text-gray-700" /> Model:
-                    </span>
-                    <span>{item.model}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaCalendarAlt className="text-gray-700" /> Year:
-                    </span>
-                    <span>{item.year}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaTachometerAlt className="text-gray-700" /> Mileage:
-                    </span>
-                    <span>
-                      {item.mileage} {item.mileageUnit}
-                    </span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaTag className="text-gray-700" /> Condition:
-                    </span>
-                    <span>{item.itemCondition}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaClock className="text-gray-700" /> Availability:
-                    </span>
-                    <span>{item.availability}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaBarcode className="text-gray-700" /> VIN:
-                    </span>
-                    <span>{item.vin}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaCarAlt className="text-gray-700" /> Body Type:
-                    </span>
-                    <span>{item.bodyType}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaPalette className="text-gray-700" /> Color:
-                    </span>
-                    <span>{item.color}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaGears className="text-gray-700" /> Drive Wheel:
-                    </span>
-                    <span>{item.driveWheelConfiguration}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaDoorClosed className="text-gray-700" /> Door&apos;s:
-                    </span>
-                    <span>{item.numberOfDoors}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaGasPump className="text-gray-700" /> Fuel Type:
-                    </span>
-                    <span>{item.fuelType}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaCarSide className="text-gray-700" /> Engine:
-                    </span>
-                    <span>{item.vehicleEngine}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaUsers className="text-gray-700" /> Seating:
-                    </span>
-                    <span>{item.vehicleSeatingCapacity}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaExchangeAlt className="text-gray-700" /> Transmission:
-                    </span>
-                    <span>{item.vehicleTransmission}</span>
-                  </p>
-                  <p className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
-                    <span className="flex gap-2 items-center">
-                      <FaCogs className="text-gray-700" /> Cylinders:
-                    </span>
-                    <span>{item.cylinders}</span>
-                  </p>
+                <div className="p-4 rounded-md grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { icon: FaCar, label: "Make", value: item.make },
+                    { icon: FaCarAlt, label: "Model", value: item.model },
+                    { icon: FaCalendarAlt, label: "Year", value: item.year },
+                    { icon: FaTachometerAlt, label: "Mileage", value: `${item.mileage} ${item.mileageUnit}` },
+                    { icon: FaTag, label: "Condition", value: item.itemCondition },
+                    { icon: FaClock, label: "Availability", value: item.availability },
+                    { icon: FaBarcode, label: "VIN", value: item.vin },
+                    { icon: FaCarAlt, label: "Body Type", value: item.bodyType },
+                    { icon: FaPalette, label: "Color", value: item.color },
+                    { icon: FaGears, label: "Drive Wheel", value: item.driveWheelConfiguration },
+                    { icon: FaDoorClosed, label: "Doors", value: item.numberOfDoors },
+                    { icon: FaGasPump, label: "Fuel Type", value: item.fuelType },
+                    { icon: FaCarSide, label: "Engine", value: item.vehicleEngine },
+                    { icon: FaUsers, label: "Seating", value: item.vehicleSeatingCapacity },
+                    { icon: FaExchangeAlt, label: "Transmission", value: item.vehicleTransmission },
+                    { icon: FaCogs, label: "Cylinders", value: item.cylinders }
+                  ].map(({ icon: Icon, label, value }, index) => (
+                    <p key={index} className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
+                      <span className="flex gap-2 items-center">
+                        <Icon className="text-gray-700" /> {label}:
+                      </span>
+                      <span>{value}</span>
+                    </p>
+                  ))}
                 </div>
 
                 <div
@@ -173,7 +99,7 @@ export default function ListingPage({ slug }) {
                 {/* Car Features Section */}
                 <div className="bg-gray-100 p-4 rounded-md mt-4">
                   <h3 className="font-semibold mb-2">Features</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {item.carFeature.map((feature, index) => (
                       <div key={index} className="flex items-center">
                         <FaCheckCircle className="text-green-500 mr-2" />
@@ -186,7 +112,7 @@ export default function ListingPage({ slug }) {
                 {/* Car Safety Features Section */}
                 <div className="bg-gray-100 p-4 rounded-md mt-4">
                   <h3 className="font-semibold mb-2">Safety Features</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {item.carSafetyFeature.map((safety, index) => (
                       <div key={index} className="flex items-center">
                         <FaCheckCircle className="text-green-500 mr-2" />
@@ -197,7 +123,7 @@ export default function ListingPage({ slug }) {
                 </div>
               </div>
             </div>
-            <div className="w-2/5 max-w-full">
+            <div className="w-full lg:w-2/5">
               <h4 className="mb-3 font-semibold">Related Cars</h4>
               <RelatedCars />
               <div className="mt-5">
