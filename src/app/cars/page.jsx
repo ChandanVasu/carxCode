@@ -95,9 +95,9 @@ function Listing() {
     return (
         <div className="">
 
-            <div className='h-72 w-full   flex flex-col justify-center items-center bg-texcher1 mb-8'>
+            <div className='h-96 w-full   flex flex-col justify-center items-center bg-texcher1 mb-8'>
                 <div className='text-center'>
-                    <h1 className='text-3xl'>
+                    <h1 className='text-3xl p-2'>
                         Filter Cars by Make, Model, and Price Range
                     </h1>
                     <p className='mt-2'>
@@ -105,9 +105,9 @@ function Listing() {
                     </p>
                 </div>
 
-                <div className='flex justify-center gap-10 items-center mt-10 '>
+                <div className='flex justify-center gap-3 md:gap-10 items-center mt-10 flex-col md:flex-row  '>
 
-                    <div className="mb-4">
+                    <div className="mb-1">
                         <Select
                             placeholder="Select a make"
                             value={selectedMake}
@@ -126,7 +126,7 @@ function Listing() {
                         </Select>
                     </div>
 
-                    <div className="mb-4">
+                    <div className="mb-1">
                         <Select
                             placeholder="Select a model"
                             value={selectedModel}
@@ -144,7 +144,7 @@ function Listing() {
                         </Select>
                     </div>
 
-                    <div className="flex flex-col gap-0 w-full h-full max-w-md items-start justify-center mb-4">
+                    <div className="flex flex-col gap-0 w-full h-full max-w-md items-start justify-center mb-1">
                         <Slider
                             formatOptions={{ style: "currency", currency: "USD" }}
                             step={1000}
@@ -189,7 +189,7 @@ function Listing() {
                     <img className='w-96 h-96' src="/nodata.jpg" alt="" />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-1 md:mx-20">
                     {listing.map(item => (
                         <div key={item.id} className="relative shadow-md rounded-lg overflow-hidden bg-texcher">
                             <div className="relative z-10 p-4">

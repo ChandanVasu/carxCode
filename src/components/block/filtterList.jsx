@@ -93,7 +93,10 @@ function Listing() {
 
     return (
         <div className="p-4">
-            <div className='flex flex-col md:flex-row justify-center gap-5 items-center my-10 md:gap-10'>
+            <h1 className='text-xl md:text-3xl  text-center mt-1 md:mt-5'>
+                Filter Cars by Make, Model, and Price Range
+            </h1>
+            <div className='flex flex-col md:flex-row justify-center gap-5 items-center my-2 md:my-10 md:gap-10'>
                 <div className="flex flex-col items-center gap-0 w-full h-full max-w-md  justify-between mb-4">
                     <Select
                         placeholder="Select a make"

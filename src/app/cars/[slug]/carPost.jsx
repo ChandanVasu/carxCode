@@ -43,7 +43,7 @@ export default function ListingPage({ slug }) {
   }, [slug]);
 
   return (
-    <div className="px-4 sm:px-6 lg:px-20 mt-10">
+    <div className="px-4 sm:px-6 lg:px-20 mt-3 md:mt-10">
       <div>
         {listing.map((item) => (
           <div className="flex flex-col lg:flex-row gap-10" key={item.id}>
@@ -54,7 +54,7 @@ export default function ListingPage({ slug }) {
                 height={450}
                 width={1000}
                 shadow="sm"
-                className="w-full"
+                className="w-full image-carlist"
               />
               <div>
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mt-4 px-4 rounded-md">
@@ -91,13 +91,8 @@ export default function ListingPage({ slug }) {
                   ))}
                 </div>
 
-                <div
-                  className="ck-content mt-2"
-                  dangerouslySetInnerHTML={{ __html: item.description }}
-                ></div>
-
                 {/* Car Features Section */}
-                <div className="bg-gray-100 p-4 rounded-md mt-4">
+                <div className="bg-gray-100 p-4 rounded-md mt-2">
                   <h3 className="font-semibold mb-2">Features</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {item.carFeature.map((feature, index) => (
@@ -110,7 +105,7 @@ export default function ListingPage({ slug }) {
                 </div>
 
                 {/* Car Safety Features Section */}
-                <div className="bg-gray-100 p-4 rounded-md mt-4">
+                <div className="bg-gray-100 p-4 rounded-md mt-2">
                   <h3 className="font-semibold mb-2">Safety Features</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {item.carSafetyFeature.map((safety, index) => (
@@ -121,9 +116,16 @@ export default function ListingPage({ slug }) {
                     ))}
                   </div>
                 </div>
+
+                <h2 className="text-xl font-semibold mt-4">Content</h2>
+                <div
+                  className="ck-content mt-2 "
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                ></div>
               </div>
             </div>
-            <div className="w-full lg:w-2/5">
+
+            <div className="w-full lg:w-2/5 sticky top-4 self-start lg:sticky lg:top-4">
               <h4 className="mb-3 font-semibold">Related Cars</h4>
               <RelatedCars />
               <div className="mt-5">

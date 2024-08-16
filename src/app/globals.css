@@ -32,7 +32,11 @@ body {}
 }
 
 
-
+@media (max-width:768px){
+  .image-carlist{
+    height: 250px !important;
+  }
+}
 
 
 
