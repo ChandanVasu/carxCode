@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-      <div className='shadow-1 flex justify-between items-center px-4 py-2 sm:px-8 md:px-16 z-50 sticky top-0 bg-white'>
+      <div className='shadow-1 flex justify-between items-center px-4 py-0 sm:px-8 md:px-16 z-50 sticky top-0 bg-white'>
         <Link href="/"><img className='h-14 sm:h-16 p-2 cursor-pointer' src="/logo.png" alt="Logo" /></Link>
         
         {/* Desktop Navigation */}
