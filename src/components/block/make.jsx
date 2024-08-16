@@ -84,7 +84,7 @@ export default function App() {
 
       <div
         ref={scrollRef}
-        className="h-48 bg-white rounded-md shadow-1 overflow-x-auto no-scrollbar relative z-20 cursor-grab"
+        className="h-32 md:h-48  bg-white rounded-md shadow-1 overflow-x-auto no-scrollbar relative z-20 cursor-grab"
       >
         {loading ? (
           <SkeletonLoader />
@@ -95,7 +95,7 @@ export default function App() {
                 <img
                   src={make.image}
                   alt={make.make}
-                  className="h-24 w-24 object-fill rounded-full p-3 bg-white shadow-md"
+                  className="h-16 w-16 object-fill rounded-full p-3 bg-white shadow-md"
                 />
                 <span className="text-base text-center">{make.make}</span>
               </div>
