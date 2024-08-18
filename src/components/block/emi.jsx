@@ -8,11 +8,24 @@ const EMICalculator = () => {
   const [emi, setEmi] = useState(null);
   const [totalInterest, setTotalInterest] = useState(null);
   const [totalPayment, setTotalPayment] = useState(null);
+  const [error, setError] = useState('');
 
   const calculateEMI = () => {
+    if (!principal || !interestRate || !tenure) {
+      setError('All fields are required.');
+      return;
+    }
+    
+    setError(''); // Clear any previous errors
+    
     const P = parseFloat(principal);
     const R = parseFloat(interestRate) / 12 / 100; // Monthly interest rate
     const N = parseInt(tenure) * 12; // Total number of months
+
+    if (isNaN(P) || isNaN(R) || isNaN(N)) {
+      setError('Please enter valid numerical values.');
+      return;
+    }
 
     const EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
     const totalPayment = EMI * N;
@@ -24,7 +37,7 @@ const EMICalculator = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-1">
+    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-start mb-6">Cars EMI Calculator</h2>
       <div className="flex flex-col gap-6 justify-start items-start">
         <Input
@@ -33,6 +46,7 @@ const EMICalculator = () => {
           placeholder="Enter principal amount"
           value={principal}
           onChange={(e) => setPrincipal(e.target.value)}
+          required
           labelPlacement="outside"
         />
         <Input
@@ -41,6 +55,7 @@ const EMICalculator = () => {
           placeholder="Enter interest rate"
           value={interestRate}
           onChange={(e) => setInterestRate(e.target.value)}
+          required
           labelPlacement="outside"
         />
         <Input
@@ -49,8 +64,10 @@ const EMICalculator = () => {
           placeholder="Enter tenure in years"
           value={tenure}
           onChange={(e) => setTenure(e.target.value)}
+          required
           labelPlacement="outside"
         />
+        {error && <p className="text-red-500">{error}</p>}
         <Button onClick={calculateEMI} className="w-2/3 bg-black text-white">
           Calculate EMI
         </Button>

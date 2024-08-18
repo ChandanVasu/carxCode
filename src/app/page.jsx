@@ -2,7 +2,7 @@
 import React from 'react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Make from "@/components/block/make";
-import Listing from "@/components/block/listing";
+import SingleBox from "@/components/block/singleBox";
 import FiltterList from "@/components/block/filtterList";
 import EmiCalculator from "@/components/block/emi";
 
@@ -34,7 +34,7 @@ export default function App() {
       <div id='search-fliter' className="lisitng-box mt-4 px-0 md:px-20">
         <FiltterList />
       </div>
-      <div className="flex flex-col md:flex-row justify-between items-center my-10 px-5 md:px-20 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white py-10 gap-8 md:gap-0">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-10 px-5 md:px-20 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white py-10 gap-8 md:gap-0">
         <div className="flex justify-center items-center gap-5">
           <img src="/customer.png" alt="Happy Customers" className="w-24 h-24 md:w-32 md:h-32" />
           <div>
@@ -57,7 +57,9 @@ export default function App() {
           </div>
         </div>
       </div>
-
+      <div className='mt-16 px-20 mb-16'>
+      <SingleBox></SingleBox>
+      </div>
     </div>
   );
 }
