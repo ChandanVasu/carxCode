@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
-import { Image } from "@nextui-org/react";
 
 const SkeletonLoader = () => (
   <div className="flex gap-8 md:gap-16 items-center w-full h-full px-3 md:px-10">
@@ -99,7 +98,7 @@ export default function App() {
             {makes.map((make, index) => (
               <div key={index} className="flex flex-col items-center justify-between gap-3">
                 <Link href={`/cars/make/${make.make}`}>               
-                 <Image
+                 <img
                   src={make.image}
                   alt={make.make}
                   className="h-16 w-16 md:h-24 md:w-24 object-fill rounded-full p-3 bg-white shadow-md"
