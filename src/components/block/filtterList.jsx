@@ -50,6 +50,10 @@ function Listing() {
         fetchModels();
     }, [selectedMake]);
 
+
+    const limitedListing = listing.slice(0, 8);
+
+
     // Fetch listings based on selected make, model, and price
     useEffect(() => {
         const fetchListings = async () => {
@@ -185,7 +189,7 @@ function Listing() {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {listing.map(item => (
+                    {limitedListing.map(item => (
                         <div key={item.id} className="relative shadow-md rounded-lg overflow-hidden bg-texcher">
                             <div className="relative z-10 p-4">
                                 <div className="relative mb-2 overflow-hidden rounded-md">
