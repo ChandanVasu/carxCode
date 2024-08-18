@@ -16,15 +16,15 @@ const Header = () => {
   return (
     <>
       <div className='shadow-1 flex justify-between items-center px-4 py-0 sm:px-8 md:px-16 z-50 sticky top-0 bg-white'>
-        <Link href="/"><img className='h-14 sm:h-14 p-2 cursor-pointer' src="/logo.png" alt="Logo" /></Link>
+        <Link href="/"><img className='h-14 sm:h-14 p-2 cursor-pointer' src="/logo.svg" alt="Logo" /></Link>
 
         {/* Desktop Navigation */}
         <div className='hidden md:flex'>
           <ul className='flex gap-4 sm:gap-6'>
             <Link href="/"><li className='hover:text-primary cursor-pointer'>Home</li></Link>
             <Link href="/cars"><li className='hover:text-primary cursor-pointer'>Cars</li></Link>
-            <li className='hover:text-primary cursor-pointer'>Search</li>
             <li className='hover:text-primary cursor-pointer'>Latest</li>
+            <Link href="#search-fliter"><li className='hover:text-primary cursor-pointer'>Search</li></Link>
             <li className='hover:text-primary cursor-pointer'>Popular</li>
           </ul>
         </div>
@@ -67,7 +67,7 @@ const Header = () => {
       <div className={`fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity ${sidebarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} md:hidden`} onClick={toggleSidebar}></div>
       <div className={`fixed top-0 right-0 w-[90%] h-full bg-white shadow-lg z-50 transform transition-transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
         <div className='flex justify-between items-center p-4'>
-          <img className='h-10 cursor-pointer' src="/logo.png" alt="Logo" onClick={toggleSidebar} />
+          <img className='h-10 cursor-pointer' src="/logo.svg" alt="Logo" onClick={toggleSidebar} />
           <FaTimes className='text-2xl cursor-pointer' onClick={toggleSidebar} />
         </div>
         <div className='relative p-4'>

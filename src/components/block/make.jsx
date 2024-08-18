@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Link from "next/link";
 
 const SkeletonLoader = () => (
   <div className="flex gap-8 md:gap-16 items-center w-full h-full px-3 md:px-10">
     {[...Array(9)].map((_, index) => (
       <div key={index} className="flex flex-col items-center justify-between gap-3 animate-pulse">
-        <div className="h-16 w-16 md:h-24 md:w-24 bg-gray-200 rounded-full"></div>
+        <div className="h-16 w-16 md:h-24 md:w-24 bg-gray-200 rounded-full shadow-md"></div>
         <div className="h-4 w-16 md:w-24 bg-gray-200 rounded"></div>
       </div>
     ))}
@@ -23,7 +24,7 @@ export default function App() {
   useEffect(() => {
     const fetchMakes = async () => {
       try {
-        const response = await fetch("https://caradmin.vercel.app/api/listing/make");
+        const response = await fetch("https://caradmin.vercel.app/api/listing/make" , { cache: 'force-cache'});
         const data = await response.json();
         setMakes(data);
         setLoading(false);
@@ -78,7 +79,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative w-full m-auto group md:w-9/12 px-3 md:px-0">
+    <div className="relative w-full m-auto group md:w-9/12 px-3 md:px-0 ">
       <button
         onClick={() => scroll("left")}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-30 bg-white p-2 rounded-full shadow-lg ml-1 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -88,19 +89,20 @@ export default function App() {
 
       <div
         ref={scrollRef}
-        className="h-32 md:h-48 bg-white rounded-md shadow-1 overflow-x-auto no-scrollbar relative z-20 cursor-grab"
+        className="h-32 md:h-48 bg-white rounded-md shadow-1  overflow-x-auto no-scrollbar relative z-20 cursor-grab"
       >
         {loading ? (
           <SkeletonLoader />
         ) : (
-          <div className="flex justify-start gap-8 md:gap-16 items-center w-max h-full px-3 md:px-10">
+          <div className="flex justify-start gap-8 md:gap-16 items-center w-max h-full px-3 md:px-10 ">
             {makes.map((make, index) => (
               <div key={index} className="flex flex-col items-center justify-between gap-3">
-                <img
+                <Link href={`/cars/make/${make.make}`}>               
+                 <img
                   src={make.image}
                   alt={make.make}
                   className="h-16 w-16 md:h-24 md:w-24 object-fill rounded-full p-3 bg-white shadow-md"
-                />
+                /></Link>
                 <span className="text-sm md:text-base text-center">{make.make}</span>
               </div>
             ))}

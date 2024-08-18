@@ -14,16 +14,19 @@ import {
   FaCarSide,
   FaUsers,
   FaExchangeAlt,
-  FaCogs
+  FaCogs,
 } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import RelatedCars from "./relatedCars";
 import EmiCalculator from "@/components/block/emi";
 import { Image } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/spinner";
 import { FaGears } from "react-icons/fa6";
 
 export default function ListingPage({ slug }) {
-  const [listing, setListing] = useState([]);
+  const [listing, setListing] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -36,16 +39,35 @@ export default function ListingPage({ slug }) {
         setListing(data);
       } catch (error) {
         console.error("Error fetching listing:", error);
+        setError("Failed to load the listing. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchListing();
   }, [slug]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-500">{error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="px-4 sm:px-6 lg:px-20 mt-3 md:mt-10">
       <div>
-        {listing.map((item) => (
+        {listing?.map((item) => (
           <div className="flex flex-col lg:flex-row gap-10" key={item.id}>
             <div className="w-full lg:w-3/5">
               <Image
@@ -80,7 +102,7 @@ export default function ListingPage({ slug }) {
                     { icon: FaCarSide, label: "Engine", value: item.vehicleEngine },
                     { icon: FaUsers, label: "Seating", value: item.vehicleSeatingCapacity },
                     { icon: FaExchangeAlt, label: "Transmission", value: item.vehicleTransmission },
-                    { icon: FaCogs, label: "Cylinders", value: item.cylinders }
+                    { icon: FaCogs, label: "Cylinders", value: item.cylinders },
                   ].map(({ icon: Icon, label, value }, index) => (
                     <p key={index} className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
                       <span className="flex gap-2 items-center">

@@ -34,11 +34,14 @@ body {}
 
 @media (max-width:768px){
   .image-carlist{
-    height: 250px !important;
+    height: 200px !important;
   }
 }
 
+.bg-1{
+  background: radial-gradient(circle, rgba(255,218,213,1) 50%, rgba(255,255,255,1) 100%);
 
+}
 
 h1 {
   font-size: 30px;

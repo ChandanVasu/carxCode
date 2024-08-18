@@ -27,11 +27,11 @@ export default function App() {
           <img className="h-72 md:w-1/2  w-full object-contain drop-shadow-lg" src="/cars.png" alt="Cars" />
         </div>
       </div>
-      <div className="-mt-20">
+      <div className="-mt-10 md:-mt-20">
         <Make />
       </div>
 
-      <div className="lisitng-box mt-4 px-0 md:px-20">
+      <div id='search-fliter' className="lisitng-box mt-4 px-0 md:px-20">
         <FiltterList />
       </div>
     </div>
