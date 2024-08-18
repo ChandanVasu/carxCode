@@ -3,6 +3,7 @@ import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
 import { Skeleton } from "@nextui-org/react";
+import { Image } from '@nextui-org/react';
 
 function Listing() {
     const [listing, setListing] = useState([]);
@@ -69,7 +70,7 @@ function Listing() {
                 {limitedListing.map((item) => (
                     <div key={item.id} className="flex bg-white shadow-1 rounded-lg overflow-hidden bg-texcher1 relative">
                         <div className="w-2/6 md:w-2/4">
-                            <img
+                            <Image
                                 src={item.image}
                                 alt={item.title}
                                 className="w-full h-full object-fill"

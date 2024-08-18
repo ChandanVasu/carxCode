@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from '@nextui-org/react';
 import { FaTimes, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Company Info */}
           <div className="mb-6 md:mb-0">
-             <img src="/logo.svg" alt="" />
+             <Image src="/logo.svg" alt="" />
             <p className="text-sm">© 2024 Company Name. All rights reserved.</p>
           </div>
 

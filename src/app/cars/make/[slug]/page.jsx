@@ -4,6 +4,7 @@ import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
 import Link from 'next/link';
+import { Image } from '@nextui-org/react';
 
 
 function Listing({ params }) {
@@ -47,7 +48,7 @@ function Listing({ params }) {
                         <div className="relative z-10 p-4">
                             <div className="overflow-hidden rounded-md mb-2 relative">
                                 <Link href={`/cars/${item._id}`}>
-                                    <img
+                                    <Image
                                         src={item.image}
                                         alt={item.title}
                                         className="w-full h-48 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"

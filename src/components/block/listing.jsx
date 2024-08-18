@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
+import { Image } from '@nextui-org/react';
 
 
 function Listing() {
@@ -33,7 +34,7 @@ function Listing() {
                     <div key={item.id} className="relative shadow-md rounded-lg overflow-hidden bg-texcher">
                         <div className="relative z-10 p-4">
                             <div className="overflow-hidden rounded-md mb-2 relative">
-                                <img
+                                <Image
                                     src={item.image}
                                     alt={item.title}
                                     className="w-full h-48 object-fill transition-transform duration-300 ease-in-out transform hover:scale-110"

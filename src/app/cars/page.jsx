@@ -7,6 +7,7 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { Image, Skeleton } from "@nextui-org/react";
 import { Slider } from "@nextui-org/react";
 import Link from 'next/link';
+// import Image from 'next/image';
 
 function Listing() {
     const [listing, setListing] = useState([]);
@@ -187,7 +188,7 @@ function Listing() {
                 </div>
             ) : listing.length === 0 ? (
                 <div className='mx-20 m-auto flex justify-center'>
-                    <img className='w-96 h-96' src="/nodata.jpg" alt="" />
+                    <Image className='w-96 h-96' src="/nodata.jpg" alt="" />
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-1 md:mx-20">
@@ -196,7 +197,7 @@ function Listing() {
                             <div className="relative z-10 p-4">
                                 <div className="relative mb-2 overflow-hidden rounded-md">
                                 <Link href={`/cars/${item._id}`}>
-                                        <img
+                                        <Image
                                             src={item.image}
                                             alt={item.title}
                                             className="w-full h-48 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"
