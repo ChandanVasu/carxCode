@@ -36,21 +36,21 @@ export default function App() {
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center my-10 px-5 md:px-20 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white py-10 gap-8 md:gap-0">
         <div className="flex justify-center items-center gap-5">
-          <img src="/customer.svg" alt="Happy Customers" className="w-24 h-24 md:w-32 md:h-32" />
+          <img src="/customer.png" alt="Happy Customers" className="w-24 h-24 md:w-32 md:h-32" />
           <div>
             <h1 className="text-3xl md:text-4xl font-bold">200k+</h1>
             <h2 className="text-base md:text-lg">Happy Customers</h2>
           </div>
         </div>
         <div className="flex justify-center items-center gap-5">
-          <img src="/mechanic.svg" alt="Years of Experience" className="w-24 h-24 md:w-32 md:h-32" />
+          <img src="/mechanic.png" alt="Years of Experience" className="w-24 h-24 md:w-32 md:h-32" />
           <div>
             <h1 className="text-3xl md:text-4xl font-bold">10+</h1>
             <h2 className="text-base md:text-lg">Years of Experience</h2>
           </div>
         </div>
         <div className="flex justify-center items-center gap-5">
-          <img src="/support.svg" alt="Customer Support" className="w-24 h-24 md:w-32 md:h-32" />
+          <img src="/support.png" alt="Customer Support" className="w-24 h-24 md:w-32 md:h-32" />
           <div>
             <h1 className="text-3xl md:text-4xl font-bold">24/7</h1>
             <h2 className="text-base md:text-lg">Customer Support</h2>
