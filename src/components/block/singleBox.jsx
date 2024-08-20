@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 const renderSkeleton = () => (
     <div className="flex flex-col justify-center items-center gap-4">
-        <Skeleton className="h-28 w-52 rounded-md mb-2" />
-        <Skeleton className="h-5 w-52 rounded-md" />
+        <Skeleton className="h-28 w-36 md:w-52 rounded-md mb-0" />
+        <Skeleton className="h-5 w-28 rounded-md" />
     </div>
 );
 
