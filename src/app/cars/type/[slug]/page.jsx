@@ -21,7 +21,7 @@ function Listing({ params }) {
                 data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 if (params.slug) {
-                    data = data.filter(listing => listing.make === params.slug);
+                    data = data.filter(listing => listing.bodyType === params.slug);
                 }
 
                 setListing(data);

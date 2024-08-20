@@ -1,83 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import EmiCalculator from "@/components/block/emi";
+import { Skeleton } from "@nextui-org/react";
 import Link from 'next/link';
 
-// Helper function to truncate HTML content
-const truncateHTML = (html, length) => {
-    // Create a temporary element to strip out the HTML tags
-    const tempElement = document.createElement('div');
-    tempElement.innerHTML = html;
-
-    // Extract text content
-    const text = tempElement.textContent || tempElement.innerText || '';
-
-    // Truncate the text content
-    const truncatedText = text.length > length ? text.slice(0, length) + '...' : text;
-
-    // Create a new element to set truncated text back to HTML
-    const truncatedElement = document.createElement('div');
-    truncatedElement.textContent = truncatedText;
-
-    return truncatedElement.innerHTML; // Return as HTML
-};
+const renderSkeleton = () => (
+    <div className="flex flex-col justify-center items-center gap-4 mb-1 p-4">
+        <Skeleton className="h-28 w-52 rounded-md mb-2" />
+        <Skeleton className="h-5 w-52 rounded-md" />
+    </div>
+);
 
 const SingleBox = () => {
-    const [listing, setListing] = useState([]);
+    const [typeData, setTypeData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchListing = async () => {
+        const fetchType = async () => {
             try {
-                const response = await fetch("https://caradmin.vercel.app/api/listing");
-                let data = await response.json();
-
-                // Sort by date from new to old
-                data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                setListing(data);
-            } catch (error) {
-                console.error("Error fetching listing:", error);
+                const res = await fetch("https://caradmin.vercel.app/api/listing/type");
+                let typeData = await res.json();
+                setTypeData(typeData);
+                setLoading(false);
+            } catch (e) {
+                console.log(e);
+                setLoading(false);
             }
         };
-
-        fetchListing();
+        fetchType();
     }, []);
 
-    const mainListing = listing.slice(0, 1); // Get only the first listing
-
     return (
-        <div className='flex flex-col md:flex-row justify-between gap-4'>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="w-full">
+                <div className='text-start mt-3 mb-3'>
+                    <h1 className='text-2xl px-2 font-bold '>
+                        Explore Vehicle Types
+                    </h1>
+                    <p className='mt-0 px-2'>
+                        Browse through different vehicle categories <br /> and find the one that suits your needs.
+                    </p>
+                </div>
 
-            <div className='w-full md:w-1/2 flex flex-col gap-8'>
-
-                {mainListing.map((item, index) => (
-                    <div className='flex flex-col md:flex-row gap-4 p-4 shadow-md rounded-md' key={index}>
-                        <img className='rounded-md w-full md:w-1/2 h-48 md:h-56 object-cover' src={item.image} alt={item.title} />
-                        <div>
-                            <h1 className="text-blue-950 text-lg md:text-2xl font-semibold">
-                                <Link href={`/cars/${item._id}`}>
-                                    {item.title.length > 13 ? `${item.title.substring(0, 13)}...` : item.title}
-                                </Link>
-                            </h1>
-                            <p className='text-lg md:text-2xl drop-shadow-xl mt-1'>${item.price}</p>
-                            <div
-                                className="ck-content mt-2 text-slate-400 text-sm md:text-base"
-                                dangerouslySetInnerHTML={{ __html: truncateHTML(item.description, 80) }}
-                            ></div>
-                            <p className='text-sm md:text-base'>Last Update: {item.date}</p>
-                            <div className='mt-2 flex flex-wrap gap-2'>
-                                <p className='bg-emerald-100 px-2 rounded-md py-1 text-sm md:text-base'>{item.year}</p>
-                                <p className='bg-emerald-100 px-2 rounded-md py-1 text-sm md:text-base'>{item.make}</p>
-                                <p className='bg-emerald-100 px-2 rounded-md py-1 text-sm md:text-base'>{item.bodyType}</p>
+                {loading ? (
+                    <div className="grid grid-cols-3">
+                        {Array(6).fill(null).map((_, index) => (
+                            <div className='flex flex-col justify-center items-center mb-4' key={index}>
+                                {renderSkeleton()}
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
+                ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 mt-4">
+                        {typeData.map((item, index) => (
+                            <div className='flex flex-col justify-center items-center gap-2 mb-4' key={index}>
+                                <Link href={`/cars/type/${item.type}`}>  <img src={item.image} alt={item.type} className='w-52 h-28 rounded-md object-cover shadow-md p-1' /></Link>
+                                <h1 className='text-base'>{item.type}</h1>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
-            <div className='w-full md:w-1/2 mt-4 md:mt-0'>
+            <div className='w-full mt-4 md:mt-0'>
                 <EmiCalculator />
             </div>
         </div>
     );
-}
+};
 
 export default SingleBox;
