@@ -57,7 +57,7 @@ export default function App() {
           </div>
         </div>
       </div>
-      <div className='mt-16 px-20 mb-16'>
+      <div className='mt-16 px-3 md:px-20 mb-16'>
       <SingleBox></SingleBox>
       </div>
     </div>

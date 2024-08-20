@@ -42,35 +42,38 @@ const SingleBox = () => {
         fetchListing();
     }, []);
 
-    const mainListing = listing.slice(0, 2); // Get only the first listing
+    const mainListing = listing.slice(0, 1); // Get only the first listing
 
     return (
-        <div className='flex justify-between gap-2 '>
-            <div className='w-1/2  flex flex-col gap-8 '>
-                <h1 className='font-bold text-2xl'>New Listing</h1>
+        <div className='flex flex-col md:flex-row justify-between gap-4'>
+
+            <div className='w-full md:w-1/2 flex flex-col gap-8'>
+
                 {mainListing.map((item, index) => (
-                    <div className='flex gap-5 p-4 shadow-md rounded-md ' key={index}>
-                        <img className='rounded-md w-1/2 h-56' src={item.image} alt={item.title} />
+                    <div className='flex flex-col md:flex-row gap-4 p-4 shadow-md rounded-md' key={index}>
+                        <img className='rounded-md w-full md:w-1/2 h-48 md:h-56 object-cover' src={item.image} alt={item.title} />
                         <div>
-                            <h1 className="text-blue-950 text-2xl  font-semibold flex justify-between items-center">
-                                <Link href={`/cars/${item._id}`}>{item.title.length > 13 ? `${item.title.substring(0, 13)}...` : item.title}</Link>
+                            <h1 className="text-blue-950 text-lg md:text-2xl font-semibold">
+                                <Link href={`/cars/${item._id}`}>
+                                    {item.title.length > 13 ? `${item.title.substring(0, 13)}...` : item.title}
+                                </Link>
                             </h1>
-                            <p className='text-2xl drop-shadow-xl mt-1'>${item.price}</p>
+                            <p className='text-lg md:text-2xl drop-shadow-xl mt-1'>${item.price}</p>
                             <div
-                                className="ck-content mt-2 text-slate-400"
+                                className="ck-content mt-2 text-slate-400 text-sm md:text-base"
                                 dangerouslySetInnerHTML={{ __html: truncateHTML(item.description, 80) }}
                             ></div>
-                            <p>Last Update: {item.date}</p>
-                            <div className='mt-2 flex gap-3 justify-between'>
-                                <p className='bg-emerald-100 px-2 rounded-md inline-block py-1'>{item.year}</p>
-                                <p className='bg-emerald-100 px-2 rounded-md  inline-block py-1'>{item.make}</p>
-                                <p className='bg-emerald-100 px-2 rounded-md inline-block py-1'>{item.bodyType}</p>
+                            <p className='text-sm md:text-base'>Last Update: {item.date}</p>
+                            <div className='mt-2 flex flex-wrap gap-2'>
+                                <p className='bg-emerald-100 px-2 rounded-md py-1 text-sm md:text-base'>{item.year}</p>
+                                <p className='bg-emerald-100 px-2 rounded-md py-1 text-sm md:text-base'>{item.make}</p>
+                                <p className='bg-emerald-100 px-2 rounded-md py-1 text-sm md:text-base'>{item.bodyType}</p>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-            <div className='w-1/2'>
+            <div className='w-full md:w-1/2 mt-4 md:mt-0'>
                 <EmiCalculator />
             </div>
         </div>
