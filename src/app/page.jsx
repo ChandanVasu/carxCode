@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Make from "@/components/block/make";
 import SingleBox from "@/components/block/singleBox";
 import FiltterList from "@/components/block/filtterList";
-import EmiCalculator from "@/components/block/emi";
+import BlogPost from "@/components/block/blogPost";
 
 export default function App() {
   return (
@@ -59,6 +59,9 @@ export default function App() {
       </div>
       <div className='mt-3 md:mt-16 px-3 md:px-20 mb-16'>
       <SingleBox></SingleBox>
+      </div>
+      <div className='mt-3 md:mt-16 px-3 md:px-20 mb-16'>
+      <BlogPost></BlogPost>
       </div>
     </div>
   );

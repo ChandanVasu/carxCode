@@ -3,6 +3,7 @@ import { FaCar, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import { TbSteeringWheel } from 'react-icons/tb';
 import { Divider } from "@nextui-org/divider";
 import { Skeleton } from "@nextui-org/react";
+import Link from 'next/link';
 
 function Listing() {
     const [listing, setListing] = useState([]);
@@ -69,18 +70,22 @@ function Listing() {
                 {limitedListing.map((item) => (
                     <div key={item.id} className="flex bg-white shadow-1 rounded-lg overflow-hidden bg-texcher1 relative">
                         <div className="w-2/6 md:w-2/4">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-full object-fill"
-                            />
+                            <Link href={`/cars/${item._id}`} >
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-full h-full object-fill"
+                                /></Link>
+
                         </div>
                         <div className="w-4/6 px-4 md:w-2/4 flex flex-col justify-start gap-1">
-                            <h1 className="text-blue-950 text-lg font-semibold ">
-                                {item.title.length > 20 ? `${item.title.substring(0, 20)}...` : item.title}
-                            </h1>
+                            <Link href={`/cars/${item._id}`} >
+                                <h1 className="text-blue-950 text-lg font-semibold ">
+                                    {item.title.length > 20 ? `${item.title.substring(0, 20)}...` : item.title}
+                                </h1></Link>
+
                             <p className="text-2xl font-semibold text-blue-950 ">${item.price}</p>
-                            
+
                             {/* Hidden on mobile, visible on medium and larger screens */}
                             <Divider className='my-2 hidden md:block' />
                             <div className='hidden md:grid grid-cols-2'>
