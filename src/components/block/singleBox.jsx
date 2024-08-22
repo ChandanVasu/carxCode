@@ -13,11 +13,13 @@ const renderSkeleton = () => (
 const SingleBox = () => {
     const [typeData, setTypeData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+
 
     useEffect(() => {
         const fetchType = async () => {
             try {
-                const res = await fetch("https://caradmin.vercel.app/api/listing/type");
+                const res = await fetch(`${baseUrl}/api/listing/type`);
                 let typeData = await res.json();
                 setTypeData(typeData);
                 setLoading(false);

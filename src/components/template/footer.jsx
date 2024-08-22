@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="w-full md:w-1/3 text-center md:text-left">
             <h3 className="font-bold text-lg text-gray-900 mb-4">Contact Us</h3>
             <p className="flex items-center justify-center md:justify-start text-gray-700 mb-2">
-              <FaMapMarkerAlt className="mr-2" /> 123 Dream Car Avenue, Speed City, CA 98765
+              <FaMapMarkerAlt className="mr-2" /> 123 Dream Car Avenue, CA 98765
             </p>
             <p className="flex items-center justify-center md:justify-start text-gray-700 mb-2">
               <FaEnvelope className="mr-2" /> info@carx.com

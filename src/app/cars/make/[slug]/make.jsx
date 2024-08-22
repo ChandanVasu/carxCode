@@ -14,7 +14,6 @@ function Listing({ slug }) {
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
-
     useEffect(() => {
         const fetchListing = async () => {
             try {
@@ -27,7 +26,7 @@ function Listing({ slug }) {
 
 
                 if (slug) {
-                    data = data.filter(listing => listing.bodyType === slug);
+                    data = data.filter(listing => listing.make === slug);
                 }
 
                 setListing(data);

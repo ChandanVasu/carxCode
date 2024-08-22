@@ -4,13 +4,26 @@ import { Input } from "@nextui-org/react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { HiMenuAlt3 } from "react-icons/hi";
 import { FaTimes, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { useRouter } from 'next/navigation'; // Import the useRouter hook from Next.js
 import Link from 'next/link';
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter(); // Initialize the useRouter hook
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const onSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/search/${searchQuery}`);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -23,9 +36,9 @@ const Header = () => {
           <ul className='flex gap-4 sm:gap-6'>
             <Link href="/"><li className='hover:text-primary cursor-pointer'>Home</li></Link>
             <Link href="/cars"><li className='hover:text-primary cursor-pointer'>Cars</li></Link>
-            <li className='hover:text-primary cursor-pointer'>Latest</li>
             <Link href="#search-fliter"><li className='hover:text-primary cursor-pointer'>Search</li></Link>
-            <li className='hover:text-primary cursor-pointer'>Popular</li>
+            <Link href="/blog/66c6eeef6fd2b5788b909128"><li className='hover:text-primary cursor-pointer'>About Us</li></Link>
+            <Link href="/blog/66c6f093dc2c7f86bdc18469"><li className='hover:text-primary cursor-pointer'>Contact Us</li></Link>
           </ul>
         </div>
 
@@ -33,28 +46,40 @@ const Header = () => {
         <div className='relative w-48 sm:w-64 md:w-96 hidden md:flex items-center gap-4'>
           <div className='relative w-full'>
             <Input
-              type="Input"
+              type="text"
               color='primary'
               placeholder='Search...'
               size='md'
               radius='md'
               className='w-full'
+              value={searchQuery}
+              onChange={handleInputChange} // Update the state on input change
+              onKeyDown={(e) => e.key === 'Enter' && onSearch()} // Handle Enter key press
             />
-            <AiOutlineSearch className='absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500' size={20} />
+            <AiOutlineSearch 
+              className='absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 cursor-pointer' 
+              size={20} 
+              onClick={onSearch} // Trigger search on icon click
+            />
           </div>
           {/* Social Media Icons */}
           <div className='flex justify-center gap-2 px-1 mt-auto'>
-            <div className='bg-[#1877F2] p-2 rounded-full'>
-              <FaFacebookF className='text-white text-xl cursor-pointer' />
-            </div>
-            <div className='bg-[#1DA1F2] p-2 rounded-full'>
-              <FaTwitter className='text-white text-xl cursor-pointer' />
-            </div>
-            <div className='bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#833AB4] p-2 rounded-full'>
-              <FaInstagram className='text-white text-xl cursor-pointer' />
-            </div>
+            <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <div className='bg-[#1877F2] p-2 rounded-full'>
+                <FaFacebookF className='text-white text-xl cursor-pointer' />
+              </div>
+            </Link>
+            <Link href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+              <div className='bg-[#1DA1F2] p-2 rounded-full'>
+                <FaTwitter className='text-white text-xl cursor-pointer' />
+              </div>
+            </Link>
+            <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <div className='bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#833AB4] p-2 rounded-full'>
+                <FaInstagram className='text-white text-xl cursor-pointer' />
+              </div>
+            </Link>
           </div>
-
         </div>
 
         {/* Mobile Menu Icon */}
@@ -72,36 +97,47 @@ const Header = () => {
         </div>
         <div className='relative p-4'>
           <Input
-            type="Input"
+            type="text"
             color='primary'
             placeholder='Search...'
             size='md'
             radius='md'
             className='w-full'
+            value={searchQuery}
+            onChange={handleInputChange} // Update the state on input change
+            onKeyDown={(e) => e.key === 'Enter' && onSearch()} // Handle Enter key press
           />
-          <AiOutlineSearch className='absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500' size={20} />
+          <AiOutlineSearch 
+            className='absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500 cursor-pointer' 
+            size={20} 
+            onClick={onSearch} // Trigger search on icon click
+          />
         </div>
         <ul className='flex flex-col gap-4 p-4'>
           <Link href="/"><li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>Home</li></Link>
           <Link href="/cars"><li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>Cars</li></Link>
-          <li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>Search</li>
-          <li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>Latest</li>
-          <li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>Popular</li>
+          <Link href="/blog/66c6f093dc2c7f86bdc18469"><li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>Contact Us</li></Link>
+          <Link href="/blog/66c6eeef6fd2b5788b909128"><li className='hover:text-primary cursor-pointer' onClick={toggleSidebar}>About Us</li></Link>
         </ul>
 
         {/* Mobile Sidebar Footer with Social Media Icons */}
         <div className='flex justify-center gap-6 p-4 mt-auto border-t border-gray-200'>
-          <div className='bg-[#1877F2] p-2 rounded-full'>
-            <FaFacebookF className='text-white text-xl cursor-pointer' />
-          </div>
-          <div className='bg-[#1DA1F2] p-2 rounded-full'>
-            <FaTwitter className='text-white text-xl cursor-pointer' />
-          </div>
-          <div className='bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#833AB4] p-2 rounded-full'>
-            <FaInstagram className='text-white text-xl cursor-pointer' />
-          </div>
+          <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+            <div className='bg-[#1877F2] p-2 rounded-full'>
+              <FaFacebookF className='text-white text-xl cursor-pointer' />
+            </div>
+          </Link>
+          <Link href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+            <div className='bg-[#1DA1F2] p-2 rounded-full'>
+              <FaTwitter className='text-white text-xl cursor-pointer' />
+            </div>
+          </Link>
+          <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+            <div className='bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#833AB4] p-2 rounded-full'>
+              <FaInstagram className='text-white text-xl cursor-pointer' />
+            </div>
+          </Link>
         </div>
-
       </div>
     </>
   );

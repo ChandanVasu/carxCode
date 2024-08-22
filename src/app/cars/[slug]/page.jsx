@@ -1,7 +1,9 @@
 import ListingPage from "./carPost";
 
 export async function generateMetadata({ params }) {
-  const response = await fetch("https://caradmin.vercel.app/api/listing");
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+
+  const response = await fetch(`${baseUrl}/api/listing`);
   let data = await response.json();
 
   const listing = data.find((item) => item._id === params.slug);

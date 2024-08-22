@@ -15,13 +15,14 @@ function Listing() {
     const [makes, setMakes] = useState([]);
     const [models, setModels] = useState([]);
     const [loading, setLoading] = useState(true);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     const [priceValue, setPrice] = useState([0]); // Initialize price value as [0]
 
     // Fetch car makes for the select dropdown
     useEffect(() => {
         const fetchMakes = async () => {
             try {
-                const response = await fetch("https://caradmin.vercel.app/api/listing/make");
+                const response = await fetch(`${baseUrl}/api/listing/make`);
                 const data = await response.json();
                 setMakes(data);
             } catch (error) {
@@ -38,7 +39,7 @@ function Listing() {
             if (!selectedMake) return;
 
             try {
-                const response = await fetch(`https://caradmin.vercel.app/api/listing/model?make=${selectedMake}`);
+                const response = await fetch(`${baseUrl}/api/listing/model?make=${selectedMake}`);
                 const data = await response.json();
                 setModels(data);
                 setSelectedModel(""); // Reset selected model when make changes
@@ -55,7 +56,7 @@ function Listing() {
         const fetchListings = async () => {
             setLoading(true); // Start loading
             try {
-                const response = await fetch("https://caradmin.vercel.app/api/listing");
+                const response = await fetch(`${baseUrl}/api/listing`);
                 let data = await response.json();
 
                 if (selectedMake) {

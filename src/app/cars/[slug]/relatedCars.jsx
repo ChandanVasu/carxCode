@@ -8,11 +8,13 @@ import Link from 'next/link';
 function Listing() {
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(true);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+
 
     useEffect(() => {
         const fetchListing = async () => {
             try {
-                const response = await fetch("https://caradmin.vercel.app/api/listing");
+                const response = await fetch(`${baseUrl}/api/listing`);
                 let data = await response.json();
 
                 // Sort by date from new to old

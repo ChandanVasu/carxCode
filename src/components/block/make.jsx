@@ -20,11 +20,13 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const itemWidth = 80; // Adjust width for mobile
   const itemWidthMd = 96; // Width for larger screens
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+
 
   useEffect(() => {
     const fetchMakes = async () => {
       try {
-        const response = await fetch("https://caradmin.vercel.app/api/listing/make" , { cache: 'force-cache'});
+        const response = await fetch(`${baseUrl}/api/listing/make` , { cache: 'force-cache'});
         const data = await response.json();
         setMakes(data);
         setLoading(false);

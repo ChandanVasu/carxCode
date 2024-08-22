@@ -27,11 +27,12 @@ export default function ListingPage({ slug }) {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const response = await fetch("https://caradmin.vercel.app/api/listing");
+        const response = await fetch(`${baseUrl}/api/listing`);
         let data = await response.json();
 
         data = data.filter((listing) => listing._id === slug);

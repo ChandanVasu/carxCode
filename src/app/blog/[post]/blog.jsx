@@ -1,12 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { Image } from '@nextui-org/react'
 import { Spinner } from '@nextui-org/spinner'
 import Listing from "@/components/block/listing"
 
 const Blog = ({ baseUrl, id }) => {
     const [blogPost, setBlogPost] = useState([])
-    const [loading, setLoading] = useState(true)  // Add loading state
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetchPost()
@@ -21,7 +20,7 @@ const Blog = ({ baseUrl, id }) => {
         } catch (e) {
             console.log(e)
         } finally {
-            setLoading(false)  // Set loading to false when done
+            setLoading(false)
         }
     }
 
@@ -41,7 +40,9 @@ const Blog = ({ baseUrl, id }) => {
                         <h1>{item.title}</h1>
                         <p>Date: {item.date} | Category: {item.category}</p>
                     </div>
-                        <img className='w-full h-60 rounded-md md:w-500' src={item.thumbnail} alt="" />
+                    {item.image && (
+                        <img className='w-full image-post rounded-md' src={item.image} alt="" />
+                    )}
                     <div
                         className="ck-content mt-6 px-4"
                         dangerouslySetInnerHTML={{ __html: item.content }}

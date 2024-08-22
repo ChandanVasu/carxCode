@@ -75,6 +75,9 @@ function Listing() {
                     data = data.filter(listing => parseInt(listing.price.replace(/,/g, ''), 10) <= plainPriceValue);
                 }
 
+                data = data.filter(listing => listing.visibility === "Active");
+
+
                 data.sort((a, b) => new Date(b.date) - new Date(a.date));
                 setListing(data);
             } catch (error) {
