@@ -8,11 +8,13 @@ const Page = () => {
   const [mobile, setMobile] = useState(""); // State for mobile number
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const [submitStatus, setSubmitStatus] = useState(""); // State for submit status
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(""); // Reset submit status
 
     // API request to submit the form data
     const formData = {
@@ -34,21 +36,24 @@ const Page = () => {
       if (response.ok) {
         const result = await response.json();
         console.log("Server Response:", result);
-        alert("Form submitted successfully!");
+        setSubmitStatus("Form submitted successfully!"); // Set success message
 
         // Clear form fields after submission
         setName("");
         setEmail("");
         setMobile(""); // Clear mobile number
         setMessage("");
+
+        // Clear success message after 3 seconds
+        setTimeout(() => setSubmitStatus(""), 3000);
       } else {
         const errorText = await response.text();
         console.error("Error Response:", errorText);
-        alert("Failed to submit the form: " + errorText);
+        setSubmitStatus("Failed to submit the form: " + errorText); // Set error message
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      alert("There was an error submitting the form");
+      setSubmitStatus("There was an error submitting the form"); // Set error message
     } finally {
       setIsSubmitting(false);
     }
@@ -91,6 +96,9 @@ const Page = () => {
         <br />
         support@cardealer.com
       </p>
+      {submitStatus && (
+        <p className="text-lg mb-4 text-green-500">{submitStatus}</p>
+      )}
       <form onSubmit={handleSubmit} className="space-y-4 flex flex-col gap-6">
         <Input
           label="Name"
