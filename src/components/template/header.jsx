@@ -38,7 +38,7 @@ const Header = () => {
             <Link href="/cars"><li className='hover:text-primary cursor-pointer'>Cars</li></Link>
             <Link href="#search-fliter"><li className='hover:text-primary cursor-pointer'>Search</li></Link>
             <Link href="/blog/66c6eeef6fd2b5788b909128"><li className='hover:text-primary cursor-pointer'>About Us</li></Link>
-            <Link href="/blog/66c6f093dc2c7f86bdc18469"><li className='hover:text-primary cursor-pointer'>Contact Us</li></Link>
+            <Link href="/contact"><li className='hover:text-primary cursor-pointer'>Contact Us</li></Link>
           </ul>
         </div>
 

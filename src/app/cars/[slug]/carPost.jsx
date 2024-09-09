@@ -22,12 +22,15 @@ import EmiCalculator from "@/components/block/emi";
 import { Image } from "@nextui-org/react";
 import { Spinner } from "@nextui-org/spinner";
 import { FaGears } from "react-icons/fa6";
+import ContectUs from "@/components/block/inquiry";
 
 export default function ListingPage({ slug }) {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  const currentUrl = window.location.href;
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -81,31 +84,80 @@ export default function ListingPage({ slug }) {
               />
               <div>
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mt-4 px-4 rounded-md">
-                  <h1 className="font-semibold my-2 text-2xl lg:text-3xl">{item.title}</h1>
-                  <h1 className="font-semibold my-2 text-4xl drop-shadow-lg">${item.price}</h1>
+                  <h1 className="font-semibold my-2 text-2xl lg:text-3xl">
+                    {item.title}
+                  </h1>
+                  <h1 className="font-semibold my-2 text-4xl drop-shadow-lg">
+                    ${item.price}
+                  </h1>
                 </div>
 
-                <h2 className="text-xl font-semibold mt-4 pl-4">Car Overview</h2>
+                <h2 className="text-xl font-semibold mt-4 pl-4">
+                  Car Overview
+                </h2>
                 <div className="p-4 rounded-md grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
                     { icon: FaCar, label: "Make", value: item.make },
                     { icon: FaCarAlt, label: "Model", value: item.model },
                     { icon: FaCalendarAlt, label: "Year", value: item.year },
-                    { icon: FaTachometerAlt, label: "Mileage", value: `${item.mileage} ${item.mileageUnit}` },
-                    { icon: FaTag, label: "Condition", value: item.itemCondition },
-                    { icon: FaClock, label: "Availability", value: item.availability },
+                    {
+                      icon: FaTachometerAlt,
+                      label: "Mileage",
+                      value: `${item.mileage} ${item.mileageUnit}`,
+                    },
+                    {
+                      icon: FaTag,
+                      label: "Condition",
+                      value: item.itemCondition,
+                    },
+                    {
+                      icon: FaClock,
+                      label: "Availability",
+                      value: item.availability,
+                    },
                     { icon: FaBarcode, label: "VIN", value: item.vin },
-                    { icon: FaCarAlt, label: "Body Type", value: item.bodyType },
+                    {
+                      icon: FaCarAlt,
+                      label: "Body Type",
+                      value: item.bodyType,
+                    },
                     { icon: FaPalette, label: "Color", value: item.color },
-                    { icon: FaGears, label: "Drive Wheel", value: item.driveWheelConfiguration },
-                    { icon: FaDoorClosed, label: "Doors", value: item.numberOfDoors },
-                    { icon: FaGasPump, label: "Fuel Type", value: item.fuelType },
-                    { icon: FaCarSide, label: "Engine", value: item.vehicleEngine },
-                    { icon: FaUsers, label: "Seating", value: item.vehicleSeatingCapacity },
-                    { icon: FaExchangeAlt, label: "Transmission", value: item.vehicleTransmission },
+                    {
+                      icon: FaGears,
+                      label: "Drive Wheel",
+                      value: item.driveWheelConfiguration,
+                    },
+                    {
+                      icon: FaDoorClosed,
+                      label: "Doors",
+                      value: item.numberOfDoors,
+                    },
+                    {
+                      icon: FaGasPump,
+                      label: "Fuel Type",
+                      value: item.fuelType,
+                    },
+                    {
+                      icon: FaCarSide,
+                      label: "Engine",
+                      value: item.vehicleEngine,
+                    },
+                    {
+                      icon: FaUsers,
+                      label: "Seating",
+                      value: item.vehicleSeatingCapacity,
+                    },
+                    {
+                      icon: FaExchangeAlt,
+                      label: "Transmission",
+                      value: item.vehicleTransmission,
+                    },
                     { icon: FaCogs, label: "Cylinders", value: item.cylinders },
                   ].map(({ icon: Icon, label, value }, index) => (
-                    <p key={index} className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1">
+                    <p
+                      key={index}
+                      className="grid grid-cols-2 gap-4 p-2 rounded-md shadow-1"
+                    >
                       <span className="flex gap-2 items-center">
                         <Icon className="text-gray-700" /> {label}:
                       </span>
@@ -145,6 +197,14 @@ export default function ListingPage({ slug }) {
                   className="ck-content mt-2 "
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 ></div>
+                <h3 className="my-3 font-semibold">Send Inquiry</h3>
+                <div className="">
+                  <ContectUs
+                    title={item.title}
+                    url={currentUrl}
+                    image={item.image}
+                  />
+                </div>
               </div>
             </div>
 
